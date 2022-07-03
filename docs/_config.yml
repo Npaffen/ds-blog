@@ -31,7 +31,7 @@ disqus: ds_blog
 github_username:  Npaffen
 google_analytics: "G-071EYW8RPL"
 author: "Nils Paffen"
-avatar: "Foto_CV.jpg"
+avatar: Foto_CV.jpg
 # Build settings
 remote_theme: ngzhio/jekyll-theme-hamilton
 plugins:
