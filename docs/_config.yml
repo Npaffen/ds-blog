@@ -35,8 +35,9 @@ avatar: "Foto_CV.jpg"
 # Build settings
 remote_theme: ngzhio/jekyll-theme-hamilton
 plugins:
-  - jekyll-feed
-  - jekyll-remote-theme
+ - jekyll-remote-theme 
+ - jekyll-feed
+ 
 
 # Exclude from processing.
 # The following items will not be processed, by default.
