@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
+title: DS - The data scientist blog of Nils Paffen
 email: data_science_blog@proton.me
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
@@ -27,13 +27,16 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 domain: ds-blog.github.io
 url: https://ds-blog.github.io
-twitter_username: jekyllrb
+disqus: ds_blog
 github_username:  Npaffen
-
+google_analytics: "G-071EYW8RPL"
+author: "Nils Paffen"
+avatar: "Foto_CV.jpg"
 # Build settings
-theme: jekyll-theme-hamilton
+remote_theme: ngzhio/jekyll-theme-hamilton
 plugins:
   - jekyll-feed
+  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
