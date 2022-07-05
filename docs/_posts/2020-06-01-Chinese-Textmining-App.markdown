@@ -4,7 +4,7 @@ title:  "A textmining application for the People's Daily newspaper"
 date:   2020-06-01 18:32:04 +0200
 categories: textmining china peopl's-daily newspaper shiny app
 ---
-What is in the news today? This question can be easily answered if you live in a western country. For people living in china this task can be a mundane job. A small research group consisting of two PhD students and me tackled this task and created a shiny App which uses a textmining tool to analyze the biggest chinese newspaper (People's Daily) with descriptive statistics. An abstract of our scientifc report follows a short guide to the Chinese Newspaper Textmining app. For the full report please contact me via mail.
+What is in the news today? This question can be easily answered if you live in a western country. For people living in china this task can be a mundane job. A small research group consisting of two PhD students and me tackled this task and created a shiny App which uses a textmining tool to analyze the biggest chinese newspaper ([People’s Daily ](paper.people.com)) with descriptive statistics. An abstract of our scientifc report follows a short guide to the Chinese Newspaper Textmining app. For the full report please contact me via mail.
 
 Ever since it’s establishment in 1948 as the Chinese Communist Party’s (CPC) officially
 designated publication organ, and especially since it announced the foundation of the
@@ -36,7 +36,7 @@ This presents in our view a very urgent opportunity for automated data mining.
 Unlike historic literary corpora like the works of Shakespeare that can be analysed by
 generations of scholars, news is by its nature fleeting and often needs to be analysed in
 a hurry and theories tested as events unfold. Fortunately, the People’s Daily offers the
-whole paper’s content every day for free on its homepage, [paper.people.com](paper.people.com).
+whole paper’s content every day for free on its homepage, [People’s Daily ](paper.people.com).
 To test our idea for an automated evaluation of People’s Daily articles on their own
 and in context of economic data, we proposed the development of an app, that would
 1automate the task of updating the news corpora and economic data, as well as some
