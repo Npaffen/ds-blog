@@ -22,6 +22,8 @@ title: DS - A data scientist blog from Nils Paffen
 email: your-email@example.com
 disqus: Data meets science
 google_analytics: G-071EYW8RPL
+author: 'Nils Paffen
+email: 'data_science_blog \n @proton.me'
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
