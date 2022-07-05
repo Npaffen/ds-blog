@@ -24,6 +24,7 @@ disqus: 'Data meets science'
 google_analytics: ' G-071EYW8RPL'
 author: 'Nils Paffen'
 email: 'data_science_blog@proton.me'
+avatar: 'Foto_CV.jpg'
 description:
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  Npaffen

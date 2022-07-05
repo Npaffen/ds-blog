@@ -4,7 +4,7 @@ title:  "A textmining application for the People's Daily newspaper"
 date:   2020-06-01 18:32:04 +0200
 categories: textmining china peopl's-daily newspaper shiny app
 ---
-What is in the news today? This question can be easily answered if you live in a western country. For people living in china this task can be a mundane job. A small research group consisting of two PhD students and me tackled this task and created a shiny App which uses a textmining tool to analyze the biggest chinese newspaper ([People’s Daily ](paper.people.com)) with descriptive statistics. An abstract of our scientifc report follows a short guide to the Chinese Newspaper Textmining app. For the full report please contact me via mail.
+What is in the news today? This question can be easily answered if you live in a western country. For people living in China this task can be a mundane job. A small research group consisting of two PhD students and me tackled this task and created a shiny App which uses a textmining tool to analyze the biggest chinese newspaper ([People’s Daily ](paper.people.com)) with descriptive statistics. An abstract of our scientifc report follows a short guide to the Chinese Newspaper Textmining app. For the full report please contact me via mail.
 
 Ever since it’s establishment in 1948 as the Chinese Communist Party’s (CPC) officially
 designated publication organ, and especially since it announced the foundation of the
