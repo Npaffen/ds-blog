@@ -28,9 +28,10 @@ avatar: 'Foto_CV.jpg'
 description:
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  Npaffen
-remote_theme: ngzhio/jekyll-theme-hamilton
+rmote_theme: ngzhio/jekyll-theme-hamiltone
 
-
+kramdown:
+   math_engine: katex
 
 # Build settings
 plugins:
