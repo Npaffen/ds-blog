@@ -20,7 +20,12 @@ s&=\gamma_{s} X+\pi z+\xi a
 \end{align}
 $$
 
-with $$\xi=(\lambda+\kappa) / \theta$$ Let $$\tau_{a}=G_{a}\left(a_{\tau_{a}}\right)$$ and $$\tau_{u}=G_{u}\left(u_{\tau_{u}}\right)$$, where $$a_{\tau_{a}}$$ and $$u_{\tau_{u}}$$ are the $$\tau$$ - quantiles of the distributions of $$a$$ and $$u$$, respectively. Additionally define f$$Q_{w}\left(\tau_{u}\mid s,X,z\right)$$ and $$Q_{s}\left(\tau_{a}\mid X,z\right)$$ as the conditional quantile functions corresponding to log wages and years of education. To achieve the recursive conditioning model one needs to compute the control variates first. Step one is to estimate the conditional quantile functions of schooling $$s$$  and afterwards subtract the estimated values of the specific quantile from years of schooling. Considering (8) again and the fact that the model is exactly identified one only remains  with the value of ability at the specific quantile tau. Formally : \begin{align}a\left(\tau_{a}\right)=s-\bar{Q}_{s}\left(\tau_{a}\mid X,z\right).\end{align} Afterwards one adjusts the conditional quantile functions of $$ln(w)$$ with the control variate of (9) so that the residuals, orthogonal to ability, of the estimated conditional quantile regression of $$ln(w)$$ yields to $$u(\tau_u)$$ of the following regression equation :
+with $$\xi=(\lambda+\kappa) / \theta$$ Let $$\tau_{a}=G_{a}\left(a_{\tau_{a}}\right)$$ and $$\tau_{u}=G_{u}\left(u_{\tau_{u}}\right)$$, where $$a_{\tau_{a}}$$ and $$u_{\tau_{u}}$$ are the $$\tau$$ - quantiles of the distributions of $$a$$ and $$u$$, respectively. Additionally define f$$Q_{w}\left(\tau_{u}\mid s,X,z\right)$$ and $$Q_{s}\left(\tau_{a}\mid X,z\right)$$ as the conditional quantile functions corresponding to log wages and years of education. To achieve the recursive conditioning model one needs to compute the control variates first. Step one is to estimate the conditional quantile functions of schooling $$s$$  and afterwards subtract the estimated values of the specific quantile from years of schooling. Considering (8) again and the fact that the model is exactly identified one only remains  with the value of ability at the specific quantile tau. Formally :
+$$
+\begin{align}a\left(\tau_{a}\right)=s-\bar{Q}_{s}\left(\tau_{a}\mid X,z\right)
+\end{align}
+$$
+Afterwards one adjusts the conditional quantile functions of $$ln(w)$$ with the control variate of (9) so that the residuals, orthogonal to ability, of the estimated conditional quantile regression of $$ln(w)$$ yields to $$u(\tau_u)$$ of the following regression equation :
 
 $$
 \begin{align}
