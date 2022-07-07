@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: 'DS - A data scientist blog from Nils Paffen'
+title: 'DS - A data scientist blog by Nils Paffen'
 email: 'data_science_blog@proton.me'
 disqus: 'Data meets science'
 google_analytics: ' G-071EYW8RPL'
@@ -29,10 +29,19 @@ description:
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  Npaffen
 remote_theme: ngzhio/jekyll-theme-hamilton
+ values:
+       layout: single
+       author_profile: true
+       read_time: true
+       comments: true
+       share: true
+       related: true
+markdown: kramdown
+kramdown:
+   math_engine: mathjax
+
 # Build settings
-theme: minima
 plugins:
-  - jekyll-feed
   - jekyll-remote-theme
 
 # Exclude from processing.
