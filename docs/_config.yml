@@ -29,6 +29,7 @@ description:
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  Npaffen
 remote_theme: ngzhio/jekyll-theme-hamilton
+defaults:
  values:
        layout: single
        author_profile: true
