@@ -12,12 +12,12 @@ From the introduction of my term paper "Males Catch up"
 The main idea of Brunello et al.[2009](https://www.jstor.org/stable/20485330) was to use years of compulsory schooling (*ycomp*) to identify the impact of an additional year of schooling on wages with respect to the gender of the individual. The author of the orignal paper used the Chesher's approach from Chesher [(2010)](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12223)  to propose an exactly identified triangular model.
 To solve the latter and thereby generate a consistent estimator, @brunello propose a variable $z$ that is corellated with schooling but orthogonal to individual ability conditional on schooling and orthogonal to the endogenous variable of (8). The instrumental variable in this model is years of compulsory schooling $$ycomp$$. Taken this into account the (exactly identified triangular) model can be expressed as :
 
-$$
+$
 \begin{align}
 \ln(w)&=\beta s+s(\lambda a+\phi u)+\gamma_{w} X+a+u \\
 s&=\gamma_{s} X+\pi z+\xi a
 \end{align}
-$$
+$
 
 with $$\xi=(\lambda+\kappa) / \theta$$ Let $$\tau_{a}=G_{a}\left(a_{\tau_{a}}\right)$$ and $$\tau_{u}=G_{u}\left(u_{\tau_{u}}\right)$$, where $$a_{\tau_{a}}$$ and $$u_{\tau_{u}}$$ are the $$\tau$$ - quantiles of the distributions of $$a$$ and $$u$$, respectively. Additionally define f$$Q_{w}\left(\tau_{u}\mid s,X,z\right)$$ and $$Q_{s}\left(\tau_{a}\mid X,z\right)$$ as the conditional quantile functions corresponding to log wages and years of education. To achieve the recursive conditioning model one needs to compute the control variates first. Step one is to estimate the conditional quantile functions of schooling $$s$$  and afterwards subtract the estimated values of the specific quantile from years of schooling. Considering (8) again and the fact that the model is exactly identified one only remains  with the value of ability at the specific quantile tau. Formally : \begin{align}a\left(\tau_{a}\right)=s-\bar{Q}_{s}\left(\tau_{a}\mid X,z\right).\end{align} Afterwards one adjusts the conditional quantile functions of $$ln(w)$$ with the control variate of (9) so that the residuals, orthogonal to ability, of the estimated conditional quantile regression of $$ln(w)$$ yields to $$u(\tau_u)$$ of the following regression equation :
 
