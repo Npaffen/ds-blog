@@ -28,14 +28,14 @@ avatar: 'Foto_CV.jpg'
 description:
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  Npaffen
-
+remote_theme: ngzhio/jekyll-theme-hamilton
 
 
 
 # Build settings
 plugins:
   - jekyll-remote-theme
-remote_theme: ngzhio/jekyll-theme-hamilton
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to

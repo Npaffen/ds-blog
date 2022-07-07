@@ -2,23 +2,68 @@
 <html lang="en">
 
   <head>
-    <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  ...
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>DS - A data scientist blog by Nils Paffen | My blog as a data scientist</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="DS - A data scientist blog by Nils Paffen" />
+<meta name="author" content="Nils Paffen" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="My blog as a data scientist" />
+<meta property="og:description" content="My blog as a data scientist" />
+<link rel="canonical" href="/" />
+<meta property="og:url" content="/" />
+<meta property="og:site_name" content="DS - A data scientist blog by Nils Paffen" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="DS - A data scientist blog by Nils Paffen" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Nils Paffen"},"description":"My blog as a data scientist","headline":"DS - A data scientist blog by Nils Paffen","name":"DS - A data scientist blog by Nils Paffen","url":"/"}</script>
+<!-- End Jekyll SEO tag -->
 
-  <!--KaTeX-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="DS - A data scientist blog by Nils Paffen" />
+
+
+
+
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans|Roboto|Roboto%20Slab|Inconsolata|Dancing%20Script|Noto%20Sans%20SC|Noto%20Sans%20TC|Noto%20Serif%20SC|Noto%20Serif%20TC|Ma%20Shan%20Zheng">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/skin.css">
+
+<!-- Begin selecting skin -->
+
   <script>
-      document.addEventListener("DOMContentLoaded", function() {
-          renderMathInElement(document.body, {
-              // ...options...
-          });
-      });
+    const hour = (new Date()).getHours();
+    let filename = "";
+    if (hour >= 5 && hour < 7) {
+      filename = "/assets/css/skin-sunrise.css";
+    } else if (hour >= 7 && hour < 17) {
+      filename = "/assets/css/skin-daylight.css";
+    } else if (hour >= 17 && hour < 19) {
+      filename = "/assets/css/skin-sunset.css";
+    } else {
+      filename = "/assets/css/skin-midnight.css";
+    }
+    const elem = document.createElement("link");
+    elem.setAttribute("rel", "stylesheet");
+    elem.setAttribute("type", "text/css");
+    elem.setAttribute("href", filename);
+    document.getElementsByTagName("head")[0].appendChild(elem);
   </script>
 
-</head>
+<!-- End selecting skin -->
+
+<script async src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
 
   </head>
 
