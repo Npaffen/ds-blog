@@ -31,7 +31,7 @@ github_username:  Npaffen
 rmote_theme: ngzhio/jekyll-theme-hamiltone
 
 kramdown:
-   math_engine: katex
+   math_engine: mathjax
 
 # Build settings
 plugins:
