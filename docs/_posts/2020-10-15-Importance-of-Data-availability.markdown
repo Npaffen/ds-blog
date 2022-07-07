@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Importance of data avaibility - Lessons from a replication study"
+math: true
 date:   2020-10-15 16:24:33 +0200
 tags: Brunello replication-study SHARE SHARE-dataset data-avaibility
 ---
