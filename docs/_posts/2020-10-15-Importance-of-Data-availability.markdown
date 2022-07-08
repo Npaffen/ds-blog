@@ -7,6 +7,7 @@ tags: Brunello replication-study SHARE SHARE-dataset data-avaibility
 header-includes:
    - \usepackage{graphicx}
 ---
+Test
 For the university course *Causality and Programme Evaluation* I recently did a replication study of Brunello et al.[2009](https://www.jstor.org/stable/20485330). This study showed how extremly time-consuming due application procedures are to get data for a replication study. Sometimes, it is even impossible to get the data in a reasonable amount of time and without the help of a academic institution. The result of this lack of data avaibility for scientific research are biased results in the replication process or the inability to check the emperical output of a scientific paper. This blog post will compare my replicated results with those from the original paper.
 
 From the introduction of my term paper "Males Catch up"
