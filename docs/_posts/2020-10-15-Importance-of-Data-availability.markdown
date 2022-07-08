@@ -62,14 +62,29 @@ Less formally the triagular model can be explained as the following: Assume that
 
 Lets compare some of the results from the original paper and my replication study. The first result is a simple estimation of the the average impact of a compulsory school reforms of several european countries. The first graph is always from the original paper the second one from my replication study.
 
-![Note. The OLS gender-specific regressions included a constant, country dummies, q, q2 and their
+$$
+\begin{figure}
+\includegraphics[]{./_site/assets/brunello_resid.png}
+\caption{The Effect of School Reforms on Educational Attainment}
+    \floatfoot{Note. The OLS gender-specific regressions included a constant, country dummies, q, q2 and their
 interaction with country dummies, survey dummies, age, age squared, the lagged country specific
 unemployment rate and GDP per capita, the country and gender specific labour force participation
 rate at the estimated time of labour market entry, the country specific GDP per head and
-unemployment rate at the age affected by the country specific reform) ](./_site/assets/brunello_resid.png "The Effect of School Reforms on Educational Attainment")
+unemployment rate at the age affected by the country specific reform)}
+\end{figure}
+$$
 
-![Note. The OLS gender-specififc regressions included a constant, country dummies, q, q2
+
+
+$$
+\begin{figure}
+\includegraphics[]{./_site/assets/unnamed-chunk-1-1,pdf}
+\caption{The Effect of School Reforms on Educational Attainment}
+    \floatfoot{The OLS gender-specififc regressions included a constant, country dummies, q, q2
 and their interactions with country dummies and the GDP per head at the age when
-the pupil would have finished compulsory schooling.](./_site/assets/unnamed-chunk-1-1,pdf "The Effect of School Reforms on Educational Attainment")
+the pupil would have finished compulsory schooling.}
+\end{figure}
+$$
+
 
 The authors of the original paper showed that controlling for many factory in a model which estimates the years of schooling
