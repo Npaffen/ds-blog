@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-07-08T13:42:18+02:00</updated><id>/feed.xml</id><title type="html">DS - A data scientist blog by Nils Paffen</title><subtitle>My blog as a data scientist</subtitle><author><name>Nils Paffen</name></author><entry><title type="html">Importance of data avaibility - Lessons from a replication study</title><link href="/2020/10/15/Importance-of-Data-availability.html" rel="alternate" type="text/html" title="Importance of data avaibility - Lessons from a replication study" /><published>2020-10-15T16:24:33+02:00</published><updated>2020-10-15T16:24:33+02:00</updated><id>/2020/10/15/Importance-of-Data-availability</id><content type="html" xml:base="/2020/10/15/Importance-of-Data-availability.html">&lt;p&gt;For the university course &lt;em&gt;Causality and Programme Evaluation&lt;/em&gt; I recently did a replication study of Brunello et al.&lt;a href=&quot;https://www.jstor.org/stable/20485330&quot;&gt;2009&lt;/a&gt;. This study showed how extremly time-consuming due application procedures are to get data for a replication study. Sometimes, it is even impossible to get the data in a reasonable amount of time and without the help of a academic institution. The result of this lack of data avaibility for scientific research are biased results in the replication process or the inability to check the emperical output of a scientific paper. This blog post will compare my replicated results with those from the original paper.&lt;/p&gt;
+
+&lt;p&gt;From the introduction of my term paper “Males Catch up”&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;The replication study focused on the summarization and replicated results of Brunello et al.&lt;a href=&quot;https://www.jstor.org/stable/20485330&quot;&gt;2009&lt;/a&gt;. The main idea of the paper was to show if extending &amp;gt;years of compulsory schooling has an effect on the distribution of wages. Further findings might be that compulsory school reforms significantly affect educational attainment, which holded in &amp;gt;this replication study for almost none quantile, since the given data did not help to show the possible effect of the instrument years of compulsory schooling. The replication study  was &amp;gt;limited to the data of the SHARE data set, compared to a mixed dataset consisting of a “data[set] drawn from the 8th wave of the European Community Household Panel (ECHP) for the year 2001, &amp;gt;the first wave of the Survey on Household Health, Ageing and Retirement in Europe, or SHARE, for the year 2004, and the waves 1993 to 2002 of the International Social Survey Program (ISSP)” &amp;gt;Brunello et al.&lt;a href=&quot;https://www.jstor.org/stable/20485330&quot;&gt;2009&lt;/a&gt;. Due to the latter difference, replicated results differ heavily from those in the original paper.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The main idea of Brunello et al.&lt;a href=&quot;https://www.jstor.org/stable/20485330&quot;&gt;2009&lt;/a&gt; was to use years of compulsory schooling (&lt;em&gt;ycomp&lt;/em&gt;) to identify the impact of an additional year of schooling on wages with respect to the gender of the individual. The author of the orignal paper used the Chesher’s approach from Chesher &lt;a href=&quot;https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA12223&quot;&gt;(2010)&lt;/a&gt;  to propose an exactly identified triangular model.
+To solve the latter and thereby generate a consistent estimator, @brunello propose a variable $z$ that is corellated with schooling but orthogonal to individual ability conditional on schooling and orthogonal to the endogenous variable of (8). The instrumental variable in this model is years of compulsory schooling \(ycomp\). Taken this into account the (exactly identified triangular) model can be expressed as :&lt;/p&gt;
+
+\[\begin{align}
+\ln(w)&amp;amp;=\beta s+s(\lambda a+\phi u)+\gamma_{w} X+a+u \\
+s&amp;amp;=\gamma_{s} X+\pi z+\xi a
+\end{align}\]
+
+&lt;p&gt;with \(\xi=(\lambda+\kappa) / \theta\) Let \(\tau_{a}=G_{a}\left(a_{\tau_{a}}\right)\) and \(\tau_{u}=G_{u}\left(u_{\tau_{u}}\right)\), where \(a_{\tau_{a}}\) and \(u_{\tau_{u}}\) are the \(\tau\) - quantiles of the distributions of \(a\) and \(u\), respectively. Additionally define f\(Q_{w}\left(\tau_{u}\mid s,X,z\right)\) and \(Q_{s}\left(\tau_{a}\mid X,z\right)\) as the conditional quantile functions corresponding to log wages and years of education. To achieve the recursive conditioning model one needs to compute the control variates first. Step one is to estimate the conditional quantile functions of schooling \(s\)  and afterwards subtract the estimated values of the specific quantile from years of schooling. Considering (8) again and the fact that the model is exactly identified one only remains  with the value of ability at the specific quantile tau. Formally :&lt;/p&gt;
+
+\[\begin{align}a\left(\tau_{a}\right)=s-\bar{Q}_{s}\left(\tau_{a}\mid X,z\right)
+\end{align}\]
+
+&lt;p&gt;Afterwards one adjusts the conditional quantile functions of \(ln(w)\) with the control variate of (9) so that the residuals, orthogonal to ability, of the estimated conditional quantile regression of \(ln(w)\) yields to \(u(\tau_u)\) of the following regression equation :&lt;/p&gt;
+
+\[\begin{align}
+\tilde{Q}_w[\tau_u|X, s, a(\tau_a)] = \beta s + s(\lambda a(\tau_a) + \phi u(\tau_u)) + \gamma_w X + G_{a}^{-1}\left(\tau_{a}\right) + G_{u}^{-1}\left(\tau_{u}\right)
+\end{align}\]
+
+&lt;p&gt;Now one can construct the parameter $\Pi(\tau_a,\tau_u)$ which is a matrix with the following structure :&lt;/p&gt;
+
+\[\begin{align} \Pi\left(\tau_{a},
+ \tau_{u}\right)=\beta+\lambda G_{a}^{-1}\left(\tau_{a}\right)+\phi
+ G_{u}^{-1}\left(\tau_{u}\right)
+ \end{align}\]
+
+&lt;p&gt;Due to recursive conditioning \(Q_{s}\left(\tau_{a}\mid X,z\right)\) on \(Q_{w}\left[\tau_{u}\mid X,z\right)\) one yields to the following model :&lt;/p&gt;
+
+\[\begin{align} Q_{w}\left[\tau_{u}
+ \mid Q_s\left(\tau_{a} \mid X, z\right), X, z\right]&amp;amp;=Q_s\left(\tau_{a}
+ \mid X, z\right) \Pi\left(\tau_{a}, \tau_{u}\right)+\gamma_{w}
+ X+G_{a}^{-1}\left(\tau_{a}\right)+G_{u}^{-1}\left(\tau_{u}\right)&amp;amp;  \\
+ Q_{s}\left(\tau_{a} \mid X, z\right)&amp;amp;=\gamma_{s} X+\pi z+\xi
+ G_{a}^{-1}\left(\tau_{a}\right) &amp;amp;
+ \end{align}\]
+
+&lt;p&gt;A two stage fit of the latter models then gives us the coefficient of \(Q_s\left(\tau_{a}\mid X, z\right)\) After we plug this into \(\Pi\left(\tau_{a},\tau_{u}\right)\) for the coefficient \(\beta\). We will repeat this step for each quantile tau (0.1, 0.3, 0.5, 0.9) but always altering only the quantiles of either \(\tau{u}\) of \(Q_{w}\left[\tau_{u}\mid Q_s\left(\tau_{a} \mid X, z\right), X, z\right]\)  or \(\tau{a}\) of the parameter \(Q_s\left(\tau_{a}\mid X, z\right) \Pi\left(\tau_{a}, \tau_{u}\right)\) . Thereby the study observes in the first case the effect of  how a specific quantile \(\tau_a\) of \(Q_s\left(\tau_{a}\mid X, z\right)\Pi\left(\tau_{a},\tau_{u}\right)\) interacts with the entire distribution of the log hourly earnings , while the latter measure the effect of the different quantiles of the ability distribution on the fixed \(\tau_u\) of the endogenous variable \(ln(w)\). Integrating the key parameter \(\Pi\left(\tau_{a},\tau_{u}\right)\) with respect to \(\tau_a\) results in mean quantile treatment effects. The latter gives an overview of how an individual with average abilites is rewarded for educational attainment in the different quantiles of the labour market luck distribution.&lt;/p&gt;
+
+&lt;p&gt;Less formally the triagular model can be explained as the following: Assume that the earnings \(w\) of an individual are correlated with their educational level. Let this educational level in this model be defined as years of schooling \(s\). Therefore we need an instrument which correlates with the educational level measurement but not with the earnings \(w\).&lt;/p&gt;
+
+&lt;p&gt;Lets compare some of the results from the original paper and my replication study. The first result is a simple estimation of the the average impact of a compulsory school reforms of several european countries. The first graph is always from the original paper the second one from my replication study.&lt;/p&gt;
+
+\[\begin{figure}
+\includegraphics[]{./_site/assets/brunello_resid.png}
+\caption{The Effect of School Reforms on Educational Attainment}
+    \floatfoot{Note. The OLS gender-specific regressions included a constant, country dummies, q, q2 and their
+interaction with country dummies, survey dummies, age, age squared, the lagged country specific
+unemployment rate and GDP per capita, the country and gender specific labour force participation
+rate at the estimated time of labour market entry, the country specific GDP per head and
+unemployment rate at the age affected by the country specific reform)}
+\end{figure}\]
+
+\[\begin{figure}
+\includegraphics[]{./_site/assets/unnamed-chunk-1-1,pdf}
+\caption{The Effect of School Reforms on Educational Attainment}
+    \floatfoot{The OLS gender-specififc regressions included a constant, country dummies, q, q2
+and their interactions with country dummies and the GDP per head at the age when
+the pupil would have finished compulsory schooling.}
+\end{figure}\]
+
+&lt;p&gt;The authors of the original paper showed that controlling for many factory in a model which estimates the years of schooling&lt;/p&gt;</content><author><name>Nils Paffen</name></author><category term="Brunello" /><category term="replication-study" /><category term="SHARE" /><category term="SHARE-dataset" /><category term="data-avaibility" /><summary type="html">For the university course Causality and Programme Evaluation I recently did a replication study of Brunello et al.2009. This study showed how extremly time-consuming due application procedures are to get data for a replication study. Sometimes, it is even impossible to get the data in a reasonable amount of time and without the help of a academic institution. The result of this lack of data avaibility for scientific research are biased results in the replication process or the inability to check the emperical output of a scientific paper. This blog post will compare my replicated results with those from the original paper.</summary></entry><entry><title type="html">A textmining application for the People’s Daily newspaper</title><link href="/2020/06/01/Chinese-Textmining-App.html" rel="alternate" type="text/html" title="A textmining application for the People’s Daily newspaper" /><published>2020-06-01T18:32:04+02:00</published><updated>2020-06-01T18:32:04+02:00</updated><id>/2020/06/01/Chinese-Textmining-App</id><content type="html" xml:base="/2020/06/01/Chinese-Textmining-App.html">&lt;p&gt;What is in the news today? This question can be easily answered if you live in a western country. For people living in China this task can be a mundane job. A small research group consisting of two PhD students and me tackled this task and created a shiny App which uses a textmining tool to analyze the biggest chinese newspaper (&lt;a href=&quot;paper.people.com&quot;&gt;People’s Daily &lt;/a&gt;) with descriptive statistics. An abstract of our scientifc report follows a short guide to the Chinese Newspaper Textmining app. For the full report please contact me via mail.&lt;/p&gt;
+
+&lt;p&gt;Ever since it’s establishment in 1948 as the Chinese Communist Party’s (CPC) officially
+designated publication organ, and especially since it announced the foundation of the
+People’s Republic by Mao Zedong on October 1st, 1949, the People’s Daily newspaper
+(also known as Renmin Ribao or RMRB) has been an object of the highest interest
+for anyone interested in modern China. It is safe to say that its front page is that
+of the most widely published newspapers in Chinese and it’s the most widely read.
+This amount of attention and it’s clear designation as voice of the CPC have made
+it an invaluable source for information on China’s ruling elite’s communication with
+the masses. In times of crisis, even tiny changes in placing, formatting or wording are
+chosen and interpreted with extreme scrutiny Tan &lt;a href=&quot;http://www.
+jstor.org/stable/2759720&quot;&gt;(1990)&lt;/a&gt;. The reason for this is on
+the one hand the need for some form of discussion involving the government and the
+educated citizenry Kuhn &lt;a href=&quot;https://www.sup.org/books/title/?id=1845&quot;&gt;(2002)&lt;/a&gt;, but also the sensitivity of certain topics, also called
+censorship.&lt;/p&gt;
+
+&lt;p&gt;In the past, close reading and an intimate knowledge of the Chinese language were
+the only tools available to researchers interested in this publication. Even the most
+well-read scholars of modern China will have to admit that reading the paper daily
+and in it’s entirety, even just the front page, will be a thankless undertaking. Most
+articles are official statements and collections of facts about the activites of leaders,
+or plain positive messages about some aspect about the nation, also called, by the
+CPC themselves, propaganda. The nuances that to detect require years of study are
+difficult to check against factual evidence, short of spending hours of reading yourself.
+Only rarely are messages communicated as clearly, as back on the founding day of the
+People’s Republic.&lt;/p&gt;
+
+&lt;p&gt;This presents in our view a very urgent opportunity for automated data mining.
+Unlike historic literary corpora like the works of Shakespeare that can be analysed by
+generations of scholars, news is by its nature fleeting and often needs to be analysed in
+a hurry and theories tested as events unfold. Fortunately, the People’s Daily offers the
+whole paper’s content every day for free on its homepage, &lt;a href=&quot;paper.people.com&quot;&gt;People’s Daily &lt;/a&gt;.
+To test our idea for an automated evaluation of People’s Daily articles on their own
+and in context of economic data, we proposed the development of an app, that would
+automate the task of updating the news corpora and economic data, as well as some
+descriptive and basic analytical steps used in quantitative text analysis. To make these
+results available to non-Chinese speakers, we include a simple translation routine, that
+gives the most common word for word translation, even if not the meaning of entire
+articles or sentences.&lt;/p&gt;
+
+&lt;p&gt;We stress that this will in no way substitute any qualitative reading, knowledge of
+Chinese politics, expertise in Chinese language or even text mining of the news in
+general. But to be able to quickly develop and test quantitative hypotheses about
+Chinese news and its relation to economic data, might be a useful tool on the way to
+further research and in-depth text mining.&lt;/p&gt;
+
+&lt;p&gt;Formally, the functionality puts our app in the toolbox of so called &lt;em&gt;distant reading&lt;/em&gt; approaches in methods of text analysis. The use of which in social sciences in general and economics in particular is growing. As discussed in this &lt;a href=&quot;http://ceur-ws.org/Vol-1786/scrivner.pdf&quot;&gt;workshop paper&lt;/a&gt;, this method is not designed to substitute or render &lt;em&gt;close reading&lt;/em&gt; obsolete. It actually increases the value of such traditional methods involving a detailed analysis of single texts, by pointing out interesting texts and features in a growing sea of available texts. To think of an overly simple example, compare reading a list of references to reading every single article contained therein. The list does not give the same information, because it abstracts from the detailed texts. But with the list, we can find the articles we are looking for, saving time and leading to new insights, i.e. information we might have missed.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;translation and transformation&lt;/strong&gt; aspect makes the data more useful by offering a translation and transformed version suitable for plotting and analysis. Having a word-for-word translation of the newspaper data allows users to gain a limited impression of the content, allow for quick scanning of the text by users not sufficiently proficient in Chinese, and also allows for streamlined mining. In particular, the free Yandex translation API used here, translates several versions of a Chinese word to the same English correspondence. So this n-m matching, where \(n&amp;gt;m\), implies that a user who searches using the English word will get more correct hits than for one particular Chinese word, without necessarily losing the meaning. One of our team members is proficient in Chinese and spot checks have confirmed the quality of the data to be sufficient. Most mistranslated words concern less common names and obscure phrases. For literary allusion and poetic nuance, of course, the translation will necessary and always fail.&lt;/p&gt;
+
+&lt;p&gt;All the limits of analyzing language quantitatively also apply in Chinese: Rarely is understanding a text as easy as grasping the meaning of the individual words. For example, when searching for the literal translation of &lt;em&gt;coronavirus&lt;/em&gt;, recent articles will yield surprisingly low hits. The reason is, that like a lot of Chinese texts, the news uses shorthands or less direct terms, especially for a subject that is politically and emotionally sensitive like this one. Therefore a better search would look for the Chinese equivalent of &lt;em&gt;outbreak&lt;/em&gt;, which in the first months of 2020 is only understood in one way, as a reference to the pandemic.&lt;/p&gt;
+
+&lt;p&gt;This does not affect general inquiries, about the most frequent words. In the same way. Censorship and propaganda are more obvious on the aggregate level. It shouldn’t surprise anyone to see that the name of president &lt;em&gt;Xi Jinping&lt;/em&gt;, the &lt;em&gt;CPC&lt;/em&gt; and other government organs feature highly among the most common words. This is not a mistake, but rather revealing an important aspect of the People’s Daily’s reporting!&lt;/p&gt;
+
+&lt;p&gt;We have gathered around 95000 unique terms over around 15 months. For comparison, the free online dictionary &lt;a href=&quot;https://www.mdbg.net/chinese/dictionary?page=cedict&quot;&gt;MDBG.net&lt;/a&gt; is based on the CC-CEDICT database which as of 2020-04-06 counts around 120000 entries, so this does not seem entirely unreasonable.&lt;/p&gt;
+
+&lt;p&gt;If you want to create your own word frequency plot with our dataset open the app with the followed link and click on the tab &lt;em&gt;Word Frequencies&lt;/em&gt;. The app might take up to 30 seconds to load and to produce a new plot. So please be a little bit patient!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://ds-blog.shinyapps.io/Chinese_Newspaper_Textmining/&quot;&gt;People’s Daily Mining&lt;/a&gt;&lt;/p&gt;</content><author><name>Nils Paffen</name></author><category term="textmining" /><category term="china" /><category term="peoples-daily" /><category term="newspaper" /><category term="shiny" /><category term="app" /><summary type="html">What is in the news today? This question can be easily answered if you live in a western country. For people living in China this task can be a mundane job. A small research group consisting of two PhD students and me tackled this task and created a shiny App which uses a textmining tool to analyze the biggest chinese newspaper (People’s Daily ) with descriptive statistics. An abstract of our scientifc report follows a short guide to the Chinese Newspaper Textmining app. For the full report please contact me via mail.</summary></entry></feed>
