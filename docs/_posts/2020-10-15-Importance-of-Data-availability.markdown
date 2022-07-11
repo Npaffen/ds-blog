@@ -63,7 +63,7 @@ Less formally the triagular model can be explained as the following: Assume that
 
 Lets compare some of the results from the original paper and my replication study. The first result is a simple estimation of the the average impact of a compulsory school reforms of several european countries. The first graph is always from the original paper the second one from my replication study.
 
-![The Effect of School Reforms on Educational Attainment](./assets/brunello_resid.png')
+![The Effect of School Reforms on Educational Attainment](./assets/brunello_resid.png)
 
  *Note. The OLS gender-specific regressions included a constant, country dummies, q, q2 and their
 interaction with country dummies, survey dummies, age, age squared, the lagged country specific
