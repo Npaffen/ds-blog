@@ -62,9 +62,9 @@ A two stage fit of the latter models then gives us the coefficient of $$Q_s\left
 Less formally the triagular model can be explained as the following: Assume that the earnings $$w$$ of an individual are correlated with their educational level. Let this educational level in this model be defined as years of schooling $$s$$. Therefore we need an instrument which correlates with the educational level measurement but not with the earnings $$w$$.
 
 Lets compare some of the results from the original paper and my replication study. The first result is a simple estimation of the the average impact of a compulsory school reforms of several european countries. The first graph is always from the original paper the second one from my replication study.
-```
+
 ![The Effect of School Reforms on Educational Attainment](./docs/assets/brunello_resid.png')
-```
+
  *Note. The OLS gender-specific regressions included a constant, country dummies, q, q2 and their
 interaction with country dummies, survey dummies, age, age squared, the lagged country specific
 unemployment rate and GDP per capita, the country and gender specific labour force participation
