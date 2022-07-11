@@ -79,7 +79,7 @@ The authors of the original paper showed that their model which estimates the ye
 and their interactions with country dummies and the GDP per head at the age when
 the pupil would have finished compulsory schooling.* |
 
-The opposite can be observed inspecting the change over time of the resiudal values in my replication study. We observe residual values around zero over time and measure an decrease of the residual values after the shock due to the school reform.
+The opposite can be observed inspecting the change over time of the resiudal values in my replication study. We observe residual values around zero over time and measure an decrease of the residual values after the shock due to the school reform. Test
 
 
 
