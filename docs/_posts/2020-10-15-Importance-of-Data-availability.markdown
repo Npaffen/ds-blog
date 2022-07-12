@@ -73,9 +73,9 @@ unemployment rate at the age affected by the country specific reform.*
 
 The authors of the original paper showed that their model which estimates the years of schooling, showed an average increase of the estimate of 0.3 years of schooling of each pupil when a compulsory schooling reform was introduced. This effect was measured through an increase of the residual value was has to be an external effect since the authors claims to have an "exactly identified triangular model".
 
-```
+
 ![The Effect of School Reforms on Educational Attainment](https://github.com/Npaffen/ds-blog/blob/main/docs/_site/assets/brunello_resid_repli.png?raw=true)
-```
+
 *Note. The OLS gender-specififc regressions included a constant, country dummies, q, q^2
 and their interactions with country dummies and the GDP per head at the age when
 the pupil would have finished compulsory schooling.*
