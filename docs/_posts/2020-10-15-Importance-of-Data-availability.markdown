@@ -63,7 +63,7 @@ Less formally the triagular model can be explained as the following: Assume that
 
 Lets compare some of the results from the original paper and my replication study. The first result is a simple estimation of the the average impact of a compulsory school reforms of several european countries. The first graph is always from the original paper the second one from my replication study.
 
-![The Effect of School Reforms on Educational Attainment](./docs/_site/assets/brunello_resid.png)
+![The Effect of School Reforms on Educational Attainment](https://github.com/Npaffen/ds-blog/blob/main/docs/_site/assets/brunello_resid.png?raw=true)
 
  *Note. The OLS gender-specific regressions included a constant, country dummies, q, q^2 and their
 interaction with country dummies, survey dummies, age, age squared, the lagged country specific
@@ -74,7 +74,7 @@ unemployment rate at the age affected by the country specific reform.*
 The authors of the original paper showed that their model which estimates the years of schooling, showed an average increase of the estimate of 0.3 years of schooling of each pupil when a compulsory schooling reform was introduced. This effect was measured through an increase of the residual value was has to be an external effect since the authors claims to have an "exactly identified triangular model".
 
 ```
-![The Effect of School Reforms on Educational Attainment]({{'./docs/_site/assets/brunello_resid_repli.png'}}){:class="img-responsive"}
+![The Effect of School Reforms on Educational Attainment](https://github.com/Npaffen/ds-blog/blob/main/docs/_site/assets/brunello_resid_repli.png?raw=true)
 ```
 *Note. The OLS gender-specififc regressions included a constant, country dummies, q, q^2
 and their interactions with country dummies and the GDP per head at the age when
