@@ -57,13 +57,13 @@ $$
  \end{align}
  $$
 
-A two stage fit of the latter models then gives us the coefficient of $$Q_s\left(\tau_{a}\mid X, z\right)$$ After we plug this into $$\Pi\left(\tau_{a},\tau_{u}\right)$$ for the coefficient $$\beta$$. We will repeat this step for each quantile tau (0.1, 0.3, 0.5, 0.9) but always altering only the quantiles of either $$\tau{u}$$ of $$Q_{w}\left[\tau_{u}\mid Q_s\left(\tau_{a} \mid X, z\right), X, z\right]$$  or $$\tau{a}$$ of the parameter $$Q_s\left(\tau_{a}\mid X, z\right) \Pi\left(\tau_{a}, \tau_{u}\right)$$ . Thereby the study observes in the first case the effect of  how a specific quantile $$\tau_a$$ of $$Q_s\left(\tau_{a}\mid X, z\right)\Pi\left(\tau_{a},\tau_{u}\right)$$ interacts with the entire distribution of the log hourly earnings , while the latter measure the effect of the different quantiles of the ability distribution on the fixed $$\tau_u$$ of the endogenous variable $$ln(w)$$. Integrating the key parameter $$\Pi\left(\tau_{a},\tau_{u}\right)$$ with respect to $$\tau_a$$ results in mean quantile treatment effects. The latter gives an overview of how an individual with average abilites is rewarded for educational attainment in the different quantiles of the labour market luck distribution.
+A two stage fit of the latter models then gives us the coefficient of $$Q_s\left(\tau_{a}\mid X, z\right)$$ After we plug this into $$\Pi\left(\tau_{a},\tau_{u}\right)$$ for the coefficient $$\beta$$. We will repeat this step for each quantile $$\tau (0.1, 0.3, 0.5, 0.9)$$ but always altering only the quantiles of either $$\tau_{u}$$ of $$Q_{w}\left[\tau_{u}\mid Q_s\left(\tau_{a} \mid X, z\right), X, z\right]$$  or $$\tau_{a}$$ of the parameter $$Q_s\left(\tau_{a}\mid X, z\right) \Pi\left(\tau_{a}, \tau_{u}\right)$$ . Thereby the study observes in the first case the effect of  how a specific quantile $$\tau_a$$ of $$Q_s\left(\tau_{a}\mid X, z\right)\Pi\left(\tau_{a},\tau_{u}\right)$$ interacts with the entire distribution of the log hourly earnings , while the latter measure the effect of the different quantiles of the ability distribution on the fixed $$\tau_u$$ of the endogenous variable $$ln(w)$$. Integrating the key parameter $$\Pi\left(\tau_{a},\tau_{u}\right)$$ with respect to $$\tau_a$$ results in mean quantile treatment effects. The latter gives an overview of how an individual with average abilites is rewarded for educational attainment in the different quantiles of the labour market luck distribution.
 
 Less formally the triagular model can be explained as the following: Assume that the earnings $$w$$ of an individual are correlated with their educational level. Let this educational level in this model be defined as years of schooling $$s$$. Therefore we need an instrument which correlates with the educational level measurement but not with the earnings $$w$$.
 
 Lets compare some of the results from the original paper and my replication study. The first result is a simple estimation of the the average impact of a compulsory school reforms of several european countries. The first graph is always from the original paper the second one from my replication study.
 
-![The Effect of School Reforms on Educational Attainment](./assets/brunello_resid.png)
+![The Effect of School Reforms on Educational Attainment](./docs/_site/assets/brunello_resid.png)
 
  *Note. The OLS gender-specific regressions included a constant, country dummies, q, q^2 and their
 interaction with country dummies, survey dummies, age, age squared, the lagged country specific
@@ -74,7 +74,7 @@ unemployment rate at the age affected by the country specific reform.*
 The authors of the original paper showed that their model which estimates the years of schooling, showed an average increase of the estimate of 0.3 years of schooling of each pupil when a compulsory schooling reform was introduced. This effect was measured through an increase of the residual value was has to be an external effect since the authors claims to have an "exactly identified triangular model".
 
 ```
-![The Effect of School Reforms on Educational Attainment]({{'./assets/brunello_resid_repli.png'}}){:class="img-responsive"}
+![The Effect of School Reforms on Educational Attainment]({{'./docs/_site/assets/brunello_resid_repli.png'}}){:class="img-responsive"}
 ```
 *Note. The OLS gender-specififc regressions included a constant, country dummies, q, q^2
 and their interactions with country dummies and the GDP per head at the age when
@@ -82,7 +82,7 @@ the pupil would have finished compulsory schooling.*
 
 The opposite can be observed inspecting the change over time of the resiudal values in my replication study. We observe residual values around zero over time and measure an decrease of the residual values after the shock due to the school reform.
 
-Let's compare another part abcdef
+Let's compare another part abcdefg
 
 
 
