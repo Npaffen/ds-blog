@@ -29,7 +29,7 @@ $$
 
 The following table gives an overview of all variables of the strava dataset. Those variables that have a $$^*$$ were used in the regression models, as explained in later in detail.
 
-![Variable list of the strava dataset](https://raw.githubusercontent.com/Npaffen/ds-blog/99195a58fee048551982e4120d825d7dd66bc808/docs/assets/var_table.png){:style="float: right;margin-right: 7px;margin-top: 7px;"} *Variable list of the strava dataset*
+![Variable list of the strava dataset](https://raw.githubusercontent.com/Npaffen/ds-blog/99195a58fee048551982e4120d825d7dd66bc808/docs/assets/var_table.png){:style="float: center;margin-right: 0px;margin-top: 7px;"}  *Variable list of the strava dataset*
 
 The measurement $$avg\_power$$ is the actual measurement of the average power provided by the bicycle computer and will be used as one variable to predict the average power of the strava Dataset.  $$avg\_power\_weig$$ is the adjusted avg. power of the ride where an algorithm from strava.com corrects possible outliers in the data due to environmental impacts such as terrain, grade, wind and other factors. The variable $$estAvgPower$$ is a guess of the average power measurement from strava.com if there is no power data supplied by the bicycle computer.  Karetnikov [(2019)](https://research.tue.nl/en/studentTheses/application-of-data-driven-analytics-on-sport-data-from-a-profess) argued that a mean power threshold below 100 is unreasonable and should be skipped.  Therefore we excluded every observation where $$avg\_power$$ or $$average\_power\_combined$$ were lower than 100 watt due to possible negative influence on the prediction models. To maintain as many observations as possible of the strava dataset, we decided to choose those where none of the three average power  measurements showed a value below 100 watt. So that $$avg\_power\_comb$$ was manufactured in the following sense :
 
@@ -95,7 +95,7 @@ Estimating only one decision tree might give us a to narrow solution for the pre
 ![Random Forest](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/random_forest.png?raw=true)
 *Figure 3 :Diagram of a random forest prediction example. A new observation is shown to the model and each tree gives its prediction on the target variable, here $$type$$, of the strava dataset. The figure is just for clarification of the concept and does not necessarily represent a possible outcome of a random forest model.*
 
-Figure 3 gives an example of a random forest prediction. The latter prediction of the target variable $$type$$ would be $$sprinter$$, Since 3 out of 4 trees would predict that the new observation would be of type $$sprinter$$f
+Figure 3 gives an example of a random forest prediction. The latter prediction of the target variable $$type$$ would be $$sprinter$$, Since 3 out of 4 trees would predict that the new observation would be of type $$sprinter$$
 
 ## Gradient Boosting
 
