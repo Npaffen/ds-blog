@@ -83,11 +83,11 @@ Decision trees are the most basic tree-based models which are part of the non-pa
 
 $$
 \begin{equation}
-SS_{t} \= \sum_i^{n_{1}} (y_1 - \bar{y}_1)^2 + \sum_i^{n_{2}} (y_2 - \bar{y}_2)^2
+SS_{t} = \sum_i^{n_{1}} (y_1 - \bar{y}_1)^2 + \sum_i^{n_{2}} (y_2 - \bar{y}_2)^2
 \end{equation}
 $$
 
-with $$y_1=(y_i\|x_i>=j)$$, $$y_2=(y_i\|x_i>=j)$$. We calculate the $$SS_t$$ for each variable $$x$$ and each threshold $$j$$ of each variable $$x$$ of the dataset. Then we chose the variable-threshold combination that generates the lowest $$SS_t$$ as our splitting criterion.
+with $$y_1=(y_i\mid x_i>=j)$$, $$y_2=(y_i\mid x_i>=j)$$. We calculate the $$SS_t$$ for each variable $$x$$ and each threshold $$j$$ of each variable $$x$$ of the dataset. Then we chose the variable-threshold combination that generates the lowest $$SS_t$$ as our splitting criterion.
 
 ## Random Forests
 Estimating only one decisio tree might give us a to narrow solution for the prediction of our target variable. Breiman [(2001)](https://doi.org/10.1023/a:1010933404324) showed that generating several uncorrelated decision trees , in terms of their prediction error, should give on average a better model to predict from than a model from a single tree. This is due to the convergence of the error of the aggregated random forest model. So with an increased number of unique decision trees, the error of the random forest model should converge to the mean average error. To ensure that we aggregate a model of decision trees that have a low correlation between each tree, two methods were used. With bagging, a dataset of $$n$$ observations is drawn with replacement from the dataset. Decision trees are very sensitive to (small) changes in the dataset, since decision rules are based on singular values of a variable. If the value of a decision rules is missing, e.g. due to bagging, a new tree structure is possible, since all subsets after this decision node were affected. The other method is feature subsampling. If we only choose some features of the dataset instead of all and vary those chosen features with each new decision tree, the possibility to end up with an decision tree that is correlated to some other tree from the dataset should be low, and thereby the correlation of the prediction error should be low. To predict the value of the target variable of a new observation, we collect the classification result of each tree in the random forest and choose the class which was predicted by the majority of trees.
