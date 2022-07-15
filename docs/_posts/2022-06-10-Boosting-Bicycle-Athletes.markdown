@@ -47,12 +47,13 @@ $$
 
 $$avg\_power\_comb$$ will be used as a second prediction variable for the average power measurement in a separated model from the $$avg\_power$$ variable. Models that contain the $$avg\_power\_comb$$ variable consist of more observations compared to those that contain the original measurement $$avg\_power$$.
 
-##IRMI
+## IRMI
 
 We found that 6880 observations in the strava dataset contained missing values for either the $$avg\_temperature$$ and/or $$avg\_calories$$ variable(s).
 An attempt to deal with missing values is to impute them using variables which were observed or calculated directly from the bicycle computer. To handle this problem we decided on two different strategies. First, the observations which contained $$NA$$ values were dropped, second those values were instead imputed. The imputation was implemented using the IRMI algorithm mentioned first by Templ et al. [(2011)]( https://doi.org/10.1016/j.csda.2011.04.012). The basis for the work of the previous mentioned authors is the IVEWARE algorithm from Raghunathan et al. [(2001)](https://www.researchgate.net/publication/244959137_A_Multivariate_Technique_for_Multiply_Imputing_Missing_Values_Using_a_Sequence_of_Regression_Models) which generates iterative estimates for the missing values using a chain of regression models and picking values from the generated predictive distributions. The IRMI algorithm solves the inability of the IVEWARE algorithm to produce robust results for data including outliers, adds more flexibility by removing the restriction of at least one fully observed variable. In the latter process an user-specified amount of the most important variables for the imputation sequence were chosen. For a formal and detailed explanation about IRMI and IVEWARE please consider both papers mentioned in this paragraph.
 
 To impute variables with $$NA$$ values we chose those 5 variables from the strava dataset, that have the highest absolute correlation with the variables to be imputed. Therefore the regression models we constructed are presented in  the following two equations:
+
 $$
  \begin{equation}
  \begin{aligned}
@@ -68,7 +69,7 @@ $$
  \end{equation}
 $$
 
-Figure 2 shows the Pearson correlation coefficient in a heat map. Tiles which are more reddish implicate a high positive correlation, white tiles implicate that the two variables are uncorrelated while more bluish tiles mark a strong negative correlation. The variables we want to predict are $$avg_power$$ and $$UCI_points_weekly$$. The variables with the highest correlation for the $$avg_power$$ were $$work_total (0.44)$$, $$avg_calories (0.4)$$ and $$avg_cadence (0.37)$$. For $$UCI_points_weekly$$ we observed a slightly negative correlation with $$type_mixed$$ and a small positive correlation with $$type_sprinter$$. Therefore we observed that those athletes who focus more on sprint races or tournaments with many sprint sections seemed to achieve higher UCI points, while athletes of type mixed tended to achieve worse results. The overall low correlation with other variables indicated that a prediction of $$UCI_points_weekly$$ with the strava dataset might not achieve good results.
+Figure 2 shows the Pearson correlation coefficient in a heat map. Tiles which are more reddish implicate a high positive correlation, white tiles implicate that the two variables are uncorrelated while more bluish tiles mark a strong negative correlation. The variables we want to predict are $$avg\_power$$ and $$UCI\_points\_weekly$$. The variables with the highest correlation for the $$avg\_power$$ were $$work\_total (0.44)$$, $$avg\_calories (0.4)$$ and $$avg\_cadence (0.37)$$. For $$UCI\_points\_weekly$$ we observed a slightly negative correlation with $$type\_mixed$$ and a small positive correlation with $$type\_sprinter$$. Therefore we observed that those athletes who focus more on sprint races or tournaments with many sprint sections seemed to achieve higher UCI points, while athletes of type mixed tended to achieve worse results. The overall low correlation with other variables indicated that a prediction of $$UCI\_points\_weekly$$ with the strava dataset might not achieve good results.
 
 # Methods
 
@@ -216,6 +217,7 @@ g\left(z^{\prime}\right)=\phi_{0}+\sum_{j=1}^{M} \phi_{j} z_{j}^{\prime} \\
 \label{eq:shap_val}
 \end{equation}
 $$
+
 where $$z^{\prime} \in \{0,1\}^M$$ is the coalition vector, $$M$$ defines the maximum coalition size and $$\phi_j \in \mathbb{R}$$ are the Shapley values.
 
 For tree-based ensemble models, Lundberg [(2018)](https://arxiv.org/abs/1802.03888) came up with a variant of SHAP, namely TreeSHAP. The latter method uses the conditional expectation $$E_{X_{S} \mid X_{C}}\left(\hat{f}(x) \mid x_{S}\right)$$ as the value function to calculate the Shapley values. For the expected prediction of a single tree, consider an observation $$x$$ and a feature subset $$S$$ from all the set, of all features $$C$$. If $$S=C$$, the expected prediction would be equal to the prediction from the node in which the observation $$x$$ falls. If $$S=\emptyset$$ we would use the weighted mean of all predictions of all terminal nodes. If $$S \subseteq C$$, we only consider those predictions of terminal nodes that do not come from a path that contains a splitting rule dependent on feature $$\overline{S}$$, a feature that is not part of the feature subset $$S$$.
