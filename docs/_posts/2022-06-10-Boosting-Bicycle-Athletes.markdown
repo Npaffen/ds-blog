@@ -29,7 +29,7 @@ $$
 
 The following table gives an overview of all variables of the strava dataset. Those variables that have a $$^*$$ were used in the regression models, as explained in later in detail.
 
-![Variable list of the strava dataset](https://raw.githubusercontent.com/Npaffen/ds-blog/99195a58fee048551982e4120d825d7dd66bc808/docs/assets/var_table.png){:style="float: left;margin-right: 7px;margin-top: 7px;margin-left: 7px"}
+![Variable list of the strava dataset](https://raw.githubusercontent.com/Npaffen/ds-blog/99195a58fee048551982e4120d825d7dd66bc808/docs/assets/var_table.png){:style="float: right;margin-right: 7px;margin-top: 7px;margin-left: 7px"}
 *
 
 Variable list of the strava dataset*
