@@ -29,7 +29,7 @@ $$
 
 The following table gives an overview of all variables of the strava dataset. Those variables that have a $$^*$$ were used in the regression models, as explained in later in detail.
 
-![Variable list of the strava dataset](https://raw.githubusercontent.com/Npaffen/ds-blog/99195a58fee048551982e4120d825d7dd66bc808/docs/assets/var_table.png){:style="float: right;margin-right: 0px;margin-top: 7px;"}  *Variable list of the strava dataset*
+![Variable list of the strava dataset](https://raw.githubusercontent.com/Npaffen/ds-blog/99195a58fee048551982e4120d825d7dd66bc808/docs/assets/var_table.png){:style="float: right;margin-right: 7px;margin-top: 7px;"}  *Variable list of the strava dataset*
 
 The measurement $$avg\_power$$ is the actual measurement of the average power provided by the bicycle computer and will be used as one variable to predict the average power of the strava Dataset.  $$avg\_power\_weig$$ is the adjusted avg. power of the ride where an algorithm from strava.com corrects possible outliers in the data due to environmental impacts such as terrain, grade, wind and other factors. The variable $$estAvgPower$$ is a guess of the average power measurement from strava.com if there is no power data supplied by the bicycle computer.  Karetnikov [(2019)](https://research.tue.nl/en/studentTheses/application-of-data-driven-analytics-on-sport-data-from-a-profess) argued that a mean power threshold below 100 is unreasonable and should be skipped.  Therefore we excluded every observation where $$avg\_power$$ or $$average\_power\_combined$$ were lower than 100 watt due to possible negative influence on the prediction models. To maintain as many observations as possible of the strava dataset, we decided to choose those where none of the three average power  measurements showed a value below 100 watt. So that $$avg\_power\_comb$$ was manufactured in the following sense :
 
@@ -92,7 +92,7 @@ with $$y_1=(y_i\mid x_i>=j)$$, $$y_2=(y_i\mid x_i>=j)$$. We calculate the $$SS_t
 ## Random Forests
 Estimating only one decision tree might give us a to narrow solution for the prediction of our target variable. Breiman [(2001)](https://doi.org/10.1023/a:1010933404324) showed that generating several uncorrelated decision trees , in terms of their prediction error, should give on average a better model to predict from than a model from a single tree. This is due to the convergence of the error of the aggregated random forest model. So with an increased number of unique decision trees, the error of the random forest model should converge to the mean average error. To ensure that we aggregate a model of decision trees that have a low correlation between each tree, two methods were used. With bagging, a dataset of $$n$$ observations is drawn with replacement from the dataset. Decision trees are very sensitive to (small) changes in the dataset, since decision rules are based on singular values of a variable. If the value of a decision rules is missing, e.g. due to bagging, a new tree structure is possible, since all subsets after this decision node were affected. The other method is feature subsampling. If we only choose some features of the dataset instead of all and vary those chosen features with each new decision tree, the possibility to end up with an decision tree that is correlated to some other tree from the dataset should be low, and thereby the correlation of the prediction error should be low. To predict the value of the target variable of a new observation, we collect the classification result of each tree in the random forest and choose the class which was predicted by the majority of trees.
 
-![Random Forest](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/random_forest.png?raw=true)
+![Random Forest](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/random_forest.png?raw=true){:style="float: right;margin-right: 7px;margin-top: 7px;"}
 *Figure 3 :Diagram of a random forest prediction example. A new observation is shown to the model and each tree gives its prediction on the target variable, here $$type$$, of the strava dataset. The figure is just for clarification of the concept and does not necessarily represent a possible outcome of a random forest model.*
 
 Figure 3 gives an example of a random forest prediction. The latter prediction of the target variable $$type$$ would be $$sprinter$$, Since 3 out of 4 trees would predict that the new observation would be of type $$sprinter$$
@@ -108,7 +108,7 @@ $$
  $$
  as our loss function. Where the $$F(x)$$ is a model to predict $$\hat{y}$$.
 
- ![GBM](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/gradient_boosting.png?raw=true)
+ ![GBM](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/gradient_boosting.png?raw=true){:style="float: right;margin-right: 7px;margin-top: 7px;"}
  *Figure 4: The diagram shows exemplary how GBM calculates the predictions.*
 
  Figure 4 shows a visualization of this process. We decided to not include the GBM method in the results section since XGBoost  and Lightgbm are direct successors of this technique and are likely to outperform the GBM method. We still included this method to give a good introduction into the following gradient-based tree-ensemble methods.

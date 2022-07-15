@@ -26,6 +26,7 @@ author: 'Nils Paffen'
 email: 'data_science_blog@proton.me'
 avatar: 'Foto_CV.jpg'
 description:
+skin: 'daylight'
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  Npaffen
 remote_theme: ngzhio/jekyll-theme-hamilton
