@@ -33,6 +33,12 @@ remote_theme: ngzhio/jekyll-theme-hamilton
 
 kramdown:
    math_engine: katex
+   trust: (context) => ['\\htmlId', '\\href'].includes(context.command),
+macros: {
+  "\\eqref": "\\href{###1}{(\\text{#1})}",
+  "\\ref": "\\href{###1}{\\text{#1}}",
+  "\\label": "\\htmlId{#1}{}"
+}
 header-includes:
    - \usepackage{graphicx}
 # Build settings
