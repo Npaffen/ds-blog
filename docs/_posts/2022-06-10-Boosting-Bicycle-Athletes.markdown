@@ -61,6 +61,9 @@ $$
  \end{aligned}
  \label{eq:irmi_reg_1}
  \end{equation}
+ $$
+
+ $$
   \begin{equation}
  \begin{aligned}
   avg\_temperature = {max\_speed}+{elevation}+{distance}  \\ + {distance}+{max\_heartRate} + \epsilon
@@ -78,7 +81,7 @@ This section will quickly summarize which methods and models were used to analyz
 ## Decison Trees
 Decision trees are the most basic tree-based models which are part of the non-parametric algorithms class. The latter means that we do not estimate a direct influence of a variable on the model. The algorithm divides a multi-dimensional feature space into unique sets, so called nodes. Generally, we distinguish between two decision tree tasks, classification and regression trees. Since our $$y$$, the variable of interest, $$avg\_power$$, $$avg\_power\_weekly$$ and $$UCI\_weekly\_points$$ are all continuous variables, we will just focus on regression trees. Each split in a regression tree is ruled by the decision of a variable threshold. At the beginning, there is a root node, which contains the entire  dataset and implies the first split into subsets. Each following node from a split can be either a decision node or a terminal node. The further term is used for nodes that will lead to a further split of the dataset. If no further split happens at one node, it is called a terminal node, leaf node, leaf. To decide which variable $$x$$ and which threshold $$j$$ of this variable $$x$$ should be chosen to split the dataset, one uses the sum of squared residuals to evaluate the possible splitting decision  for a regression trees at a node $$t$$.
 
-$$\
+$$
 \begin{equation}
 SS_{t} \= \sum_i^{n_{1}} (y_1 - \bar{y}_1)^2 + \sum_i^{n_{2}} (y_2 - \bar{y}_2)^2
 \end{equation}
