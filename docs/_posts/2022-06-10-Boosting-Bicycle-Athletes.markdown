@@ -148,12 +148,14 @@ Figure 6 shows how the ordered boosting algorithm works to create the combined m
 ![CatBoost](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/Ordered_Boosting.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
  *Figure 6: The diagram shows how the orderd boosting algorithm in CatBoost works.*
 
- Prokhorenkova et al. [(2019)](https://arxiv.org/abs/1706.09516) claim that the prediction shift mentioned before applies in the same way when computing target statistics for a categorical feature. To avoid this, they propose a sub-sampling so that $\mathcal{D}_{k}\subset\mathcal{D}_{\left\{\mathbf{x}_{k}\right\}}$ is used to calculate the target statistics for $x_k$, therefore excluding $x_k$ from the process. Let $p$ be some prior to smooth the estimate $\mathbb{E}(y|x^i=x^i_k)$ for categories of a feature with a low proportion compared to the other categories of that feature, then :
+ Prokhorenkova et al. [(2019)](https://arxiv.org/abs/1706.09516) claim that the prediction shift mentioned before applies in the same way when computing target statistics for a categorical feature. To avoid this, they propose a sub-sampling so that $$\mathcal{D}_{k}\subset\mathcal{D}_{\left\{\mathbf{x}_{k}\right\}}$$ is used to calculate the target statistics for $$x_k$$, therefore excluding $$x_k$$ from the process. Let $$p$$ be some prior to smooth the estimate $$\mathbb{E}(y|x^i=x^i_k)$$ for categories of a feature with a low proportion compared to the other categories of that feature, then :
+
+$$
 \begin{equation}
 \hat{x}_{k}^{i}=\frac{\sum_{\mathbf{x}_{j} \in \mathcal{D}_{k}} \mathbb{1}_{\left\{x_{j}^{i}=x_{k}^{i}\right\}} \cdot y_{j}+a p}{\sum_{\mathbf{x}_{j} \in \mathcal{D}_{k}} \mathbb{1}_{\left\{x_{j}^{i}=x_{k}^{i}\right\}}+a}
 \label{target_stat_cat}
 \end{equation}
-
+$$
 
  Prokhorenkova et al. [(2019)](https://arxiv.org/abs/1706.09516) then introduced a technique called ordered targeting statistic. Comparable to the online learning algorithm, we feed the model sequentially, using a random permutation $$\sigma$$ of the training dataset. Thereby, the model observes in each iteration another new training observation of the permuted training dataset, but all other observations from past iterations will be used to compute the target statistic as well.
 
