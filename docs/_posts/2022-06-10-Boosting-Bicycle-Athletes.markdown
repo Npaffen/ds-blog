@@ -7,7 +7,7 @@ tags: strava.com crawler datamining scraping gradient-boosting-models gradient-d
 ---
 My recently finished master thesis dealt with the subject of gradient boosting models applied to a dataset scraped from [www.strava.com](strava.com). A scraper written in *C#* was used to collect over 60.000 observations of training exercises from professional bicycle athletes. A diagram of the scraper can be seen in figure 1.
 
-![Diagram of the strava scraper](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/strava_scraper.png?raw=true)
+![Diagram of the strava scraper](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/strava_scraper.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
 *$$\textit{Note.}$$Figure 1 : Diagram of the working process of the strava scraper. All user interactions are marked by full line arrows, all automized interactions by the strava scraper are highlighted by coloured dotted arrows. Colours were added just for visual purpose. "*" - signs at the end of a description indicate that this process interacts with strava.com. Therefore a sleep timer after each url call is used to prevent a timeout.*
 
 The strava dataset contains training sessions from 185 professional road cyclists from the UCI World Teams list which featured 19 teams in 2020. The strava dataset contains 61840 observations. The strava dataset contains training sessions from 185 professional road cyclists from the UCI World Teams list which featured 19 teams in 2020. The strava dataset contains 61840 observations. Table 1 presents an overview of all variables of the strava dataset. 18 variables were obtained or generated from training activities of the strava website between 2018-01-01 and 2021-0318. The variables age, height, climber_points, sprinter_points were obtained by data from procyclingstats.com. The two latter variables are the points an athlete achieved for their race results in climbing or sprinting competitions respectively. These variables were then used to create a new variable type. Each observation of the strava dataset was matched with the aggregated point score from the first day of the year to the activity day of the year for each athlete gained from climbing and sprinting races respectively. Let $$d_{l}$$ be defined as the date of an observation $$i$$ of the strava dataset of athlete $$k, \mathrm{D}$$ is the date of the observation for which the categorization type was determined and $$D \geq d$$ is valid. Then, we can define the type of each athlete $$k$$ at each training activity $$i_{D}$$ by the following rule:
@@ -93,7 +93,7 @@ with $$y_1=(y_i\mid x_i>=j)$$, $$y_2=(y_i\mid x_i>=j)$$. We calculate the $$SS_t
 ## Random Forests
 Estimating only one decision tree might give us a to narrow solution for the prediction of our target variable. Breiman [(2001)](https://doi.org/10.1023/a:1010933404324) showed that generating several uncorrelated decision trees , in terms of their prediction error, should give on average a better model to predict from than a model from a single tree. This is due to the convergence of the error of the aggregated random forest model. So with an increased number of unique decision trees, the error of the random forest model should converge to the mean average error. To ensure that we aggregate a model of decision trees that have a low correlation between each tree, two methods were used. With bagging, a dataset of $$n$$ observations is drawn with replacement from the dataset. Decision trees are very sensitive to (small) changes in the dataset, since decision rules are based on singular values of a variable. If the value of a decision rules is missing, e.g. due to bagging, a new tree structure is possible, since all subsets after this decision node were affected. The other method is feature subsampling. If we only choose some features of the dataset instead of all and vary those chosen features with each new decision tree, the possibility to end up with an decision tree that is correlated to some other tree from the dataset should be low, and thereby the correlation of the prediction error should be low. To predict the value of the target variable of a new observation, we collect the classification result of each tree in the random forest and choose the class which was predicted by the majority of trees.
 
-![Random Forest](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/random_forest.png?raw=true){:style="float: right;margin-right: 7px;margin-top: 7px;margin-left: 7px"}
+![Random Forest](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/random_forest.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
 
 *Figure 3 :Diagram of a random forest prediction example. A new observation is shown to the model and each tree gives its prediction on the target variable, here $$type$$, of the strava dataset. The figure is just for clarification of the concept and does not necessarily represent a possible outcome of a random forest model.*
 
@@ -110,13 +110,13 @@ $$
  $$
  as our loss function. Where the $$F(x)$$ is a model to predict $$\hat{y}$$.
 
- ![GBM](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/gradient_boosting.png?raw=true){:style="float: right;margin-right: 7px;margin-top: 7px;"}
+ ![GBM](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/gradient_boosting.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
  *Figure 4: The diagram shows exemplary how GBM calculates the predictions.*
 
  Figure 4 shows a visualization of this process. We decided to not include the GBM method in the results section since XGBoost  and Lightgbm are direct successors of this technique and are likely to outperform the GBM method. We still included this method to give a good introduction into the following gradient-based tree-ensemble methods.
 
 ## XGBoost
- ![XGBoost](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/XGBoost-1.png?raw=true)
+ ![XGBoost](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/XGBoost-1.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
  *Figure 5: The diagram shows exemplary how XGBoost initiates the algorithm, builds trees, calculates the weights and updates the model.*
 
 Figure 5 shows a visualization of the XGBoost algorithm. The XGBoost algorithm sets the initial loss $$\mathcal{L}^{(0)} = l(y_i,\hat{y}_i) = 0.5$$.
@@ -143,7 +143,7 @@ Let $$I$$ be the amount of trees a model is learned with. Unshifted residuals $$
 
 Figure 6 shows how the ordered boosting algorithm works to create the combined model $$F$$. Since the calculation of the residuals and the iterative manner of gradient boosting techniques were explained in detail for GBM and XGBoost, figure 6 focuses more on the unique differences to other gradient boosting techniques.
 
-![CatBoost](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/Ordered_Boosting.png?raw=true)
+![CatBoost](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/Ordered_Boosting.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
  *Figure 6: The diagram shows how the orderd boosting algorithm in CatBoost works.*
 
  Prokhorenkova et al. [(2019)](https://arxiv.org/abs/1706.09516) claim that the prediction shift mentioned before applies in the same way when computing target statistics for a categorical feature. To avoid this, they propose a sub-sampling so that $\mathcal{D}_{k}\subset\mathcal{D}_{\left\{\mathbf{x}_{k}\right\}}$ is used to calculate the target statistics for $x_k$, therefore excluding $x_k$ from the process. Let $p$ be some prior to smooth the estimate $\mathbb{E}(y|x^i=x^i_k)$ for categories of a feature with a low proportion compared to the other categories of that feature, then :
@@ -155,7 +155,7 @@ Figure 6 shows how the ordered boosting algorithm works to create the combined m
 
  Prokhorenkova et al. [(2019)](https://arxiv.org/abs/1706.09516) then introduced a technique called ordered targeting statistic. Comparable to the online learning algorithm, we feed the model sequentially, using a random permutation $$\sigma$$ of the training dataset. Thereby, the model observes in each iteration another new training observation of the permuted training dataset, but all other observations from past iterations will be used to compute the target statistic as well.
 
- ![target encoding](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/ordered_target_statistics.png?raw=truee)
+ ![target encoding](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/ordered_target_statistics.png?raw=truee){:style="float: center;margin-right: 700px;margin-top: 7px;"}
  *Table 6: The diagram shows how the orderd boosting algorithm in CatBoost works.*
 
  Table 6 shows a less formal explanation of ordered target statistics. Consider each row of $$\textit{target}$$ and $$\textit{type}$$ as single observations of the exemplary dataset. The derivation of the value in column $$\textit{encoded target}$$ is explained in the column $$\textit{explanation}$$. The column $$\textit{history}$$ describes the 'observed history' of the ordered target statistics calculation. Such that, for the value of row with $$history = 3$$, we have $$target = 1$$ and $$type = mixed$$. No 'observed history' exists with $$target = 1$$, and $$type = mixed$$, so $$\sum_{\mathbf{x}_{j} \in \mathcal{D}_{k}} \mathbb{1}_{\left\{x_{j}^{i}=x_{k}^{i}\right\}} \cdot y_{j}+a p$$ in equation \eqref{target_stat_cat} is still 0, but $$\sum_{\mathbf{x}_{j} \in \mathcal{D}_{k}} \mathbb{1}_{\left\{x_{j}^{i}=x_{k}^{i}\right\}}$$ is now 1 since the sum of the denominator is no conditioned on the target value $$y_j$$. The latter is important, since Prokhorenkova et al. [(2019)](https://arxiv.org/abs/1706.09516) argue that a desired property of the target statistics feature calculation and the learning process of the model is the effective usage of all training data. Still, the oblivious counter of the fraction satisfies the requirement to counter the prediction shift. The authors called this bias target leakage, since recognizing the actual target value of the observation for which the $$\textit{encoded target}$$ calculation is performed, leaks information about the distribution of the target to the encoding process. Since this learned distribution might differ from the distribution of the target value in the test dataset, a biased prediction due to overfitting is possible.
@@ -196,7 +196,7 @@ y\left(x_{i}\right)=\mu+z\left(x_{i}\right) ; \quad i=1, \ldots, n
 $$
 where $$\mu$$ is the overall mean and $$z(x_i)$$ defines the GP with $$E[z(x_i)] = 0$$, $$Var[z(x_i)]=\sigma^2$$ and $$Cov(z(x_i),z(x_j))= \sigma^1R_{i,j}$$. Let $$y(X) \sim N_{n}\left(\mathbf{1}_{\mathbf{n}} \mu, \Sigma\right)$$, where $$N_{n}\left(\mathbf{1}_{\mathbf{n}} \mu, \Sigma\right)$$ is a multivariate normal distribution with $$\Sigma=\sigma^{2} R$$ defined through a correlation matrix $$R$$ with elements $$R_{ij}$$ and $$\mathbf{1}_{\mathbf{n}}$$, a vector of length $$n$$ with all ones s $$n\times 1$$.
 
- ![GP](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/gaussian_process.png?raw=truee)
+ ![GP](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/gaussian_process.png?raw=truee){:style="float: center;margin-right: 700px;margin-top: 7px;"}
  *$$\textit{Note.}$$ Figure 7: Examplary Gaussian Process*
 
 
@@ -227,7 +227,7 @@ where $$z^{\prime} \in \{0,1\}^M$$ is the coalition vector, $$M$$ defines the ma
 
 For tree-based ensemble models, Lundberg [(2018)](https://arxiv.org/abs/1802.03888) came up with a variant of SHAP, namely TreeSHAP. The latter method uses the conditional expectation $$E_{X_{S} \mid X_{C}}\left(\hat{f}(x) \mid x_{S}\right)$$ as the value function to calculate the Shapley values. For the expected prediction of a single tree, consider an observation $$x$$ and a feature subset $$S$$ from all the set, of all features $$C$$. If $$S=C$$, the expected prediction would be equal to the prediction from the node in which the observation $$x$$ falls. If $$S=\emptyset$$ we would use the weighted mean of all predictions of all terminal nodes. If $$S \subseteq C$$, we only consider those predictions of terminal nodes that do not come from a path that contains a splitting rule dependent on feature $$\overline{S}$$, a feature that is not part of the feature subset $$S$$.
 
-![Models overview](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/Model_presentation.png?raw=true)
+![Models overview](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/Model_presentation.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
 *  $$\textit{Note.}$$Table 3: Overview of all models*
 
 Table 3 gives an overview which model is used in combination with the three target variables and shows how the strava dataset of each model differ, in terms of observation size.  All models use 75\% of the data as training and 25\% for testing. Train and test sampling was random when we predicted the average power.
@@ -235,24 +235,24 @@ Table 3 gives an overview which model is used in combination with the three targ
 Since the UCI weekly points variable is updated for each athlete every week, we would probably leak some information about the values in the beginning of the distribution of the UCI weekly points variable if we were to sample training and test observations randomly as well. Therefore we decided to use the first 75\% of the observations for training and the last 25\% for testing.  For the prediction of the average power variables we will use two out-of-sample testing strategies for all models. The 5-fold cross-validation uses $$\dfrac{4}{5}$$ for training and $$\dfrac{1}{5}$$ for validation from the training sample of the strava dataset. The best model will then be used to predict on the test samples from the strava dataset. We call the latter procedure out-of-sample (OOS) testing. For the UCI weekly points variable 5-fold CV would also lead to possible leakage of information, since those folds with observations from the end would contain information about observations of the beginning of the distribution, so that we will only use the OOS testing strategy to evaluate the different methods. Furthermore, if we use the train dataset and test dataset in the upcoming results, we refer to the train and test samples from the strava dataset in described in this section.
 
 ## Results
-![Models overview](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/5-fold-CV-RMSE_avg_power.png?raw=true)
+![Models overview](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/5-fold-CV-RMSE_avg_power.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
 *  $$\textit{Note.}$$Table 4: In-Sampele results for the average power prediction *
 
  The lowest RMSE value of 0.148  was achieved by XGBoost with model 3 and tuned hyperparameter settings. The reduction of the RMSE value for XGBoost with tuned hyperparameter settings was up to halve compared to the results from the default HP section. The improvement of the RMSE value of the Random Forest method with tuned hyperparameter settings compared to their RMSE results with default settings was low, with a maximum reduction of the RMSE of 0.047. In both hyperparameter sections of the table 4  we observed that the model 3 leads to the lowest error metric. Comparing the results model-wise, we discovered that, independent from the hyperparameter aspect, the models 3 \& 4, which predicted the $$\textit{avg\_power}$$ variable, achieve in total better results than model 1 \& 2 which predicted $$\textit{avg\_power\_combined}$$, a variable combined from original measurements by the bicycle computer of the athlete, and some estimations from the strava website. Moreover, model 3 seems to beats model 4 with most methods.
 
 
-![OOS results power ](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/OOS_results_model_3_pow.png?raw=true)
+![OOS results power ](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/OOS_results_model_3_pow.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
 *  $$\textit{Note.}$$ Figure 8: OOS results for the average power prediction *
 
 For model 3 the OOS results were highlighted in figure 8. When we discussed the IS results of table 4, we argued that model 3 achieved the lowest RMSE score of all models with the XGBoost method and tuned hyperparameter settings. Related results were observed for the OOS calculation of the RMSE metric. Catboost and LGBM failed to achieve comparably low results with default hyperparameter settings while the Random Forest and XGBoost method achieve equally low RMSE values of of 0.327 and 0.336. When we used tuned hyperparameter settings to train and test model 3, we observed an error reduction almost up to 8 times for Catboost compared to the OOS results with default hyperparameter settings. With an RMSE of  0.15, the XGBoost method achieved the lowest RMSE value, as in the IS scenario.
 
-![VIP analysis ](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/model_impact_pow.png?raw=true)
+![VIP analysis ](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/model_impact_pow.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
 *  $$\textit{Note.}$$ Figure 9: Feature importance analysis using Tree SHAP values *
 
 Figure \ref{fig:summary_avg_p_bar} shows that the feature $$work\_total$$ on (absolute) average added around 40 watts to the mean prediction value of the target variable $$avg\_power$$,
 while $$mov\_time\_sec$$ is predicted to have the second largest impact on the prediction. If the latter feature is part of the model the average increase to the average prediction values around 20 watts. On the other hand variables with almost any contribution to the average prediction are $$UCI\_points\_weekly$$ and $$max\_cadence$$, $$type$$ and $$season$$.   It seems that the weekly tournament points, the maximal cadence value  of the training ride and the cycling type of an athlete are not helpful to predict the average power of a training ride of a professional athlete measured through a bicycle computer. The categorical variable $$season$$ seems to have no impact at all on the model. We can therefore conclude that we do not observe any seasonal influence on the average power of a training ride. All effects describe the behavior of the model and are not necessarily causal in the real world. Furthermore we do not claim that it would not matter if a road was covered with ice, nor do we claim that snow in the winter month would have no impact on the average power of a training ride compared to a training on the same road in a summer month. A reasonable explanation of these results could be, that those professional riders, which faces seasonal influence on their training routes, might train during this time of the year in the southern hemisphere or use a static bicycle trainer at home.
 
-![SHAP summary plot ](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/model_impact_pow.png?raw=true)
+![SHAP summary plot ](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/model_impact_pow.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
 *  $$\textit{Note.}$$ Figure 10: This figure shows the summary of each variable with respect to each observation of model 3 fitted with the XGBoost algorithm. All values were calculated from the test
 dataset.*
 
@@ -263,7 +263,7 @@ We will skip the results for the UCI weekly score since no method achieved a res
 
 The optimal hyperparamter values of model 3 fitted with the XGBoost algorithm were $$mtry = 20$$, $$Minimal node size = 40$$, $$Tree Depth = 14$$, $$learning rate = 0.0729534$$ and a $$loss reduction = 4.7306132\times10^{−4}$$.
 
-![OOS RMSE results power w/o work load ](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/OOS_power_no_workload.png?raw=true)
+![OOS RMSE results power w/o work load ](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/OOS_power_no_workload.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
 *$$\textit{Note.}$$Table 5*
 
 There is a high correlation between $$avg\_power$$ and $$work\_load$$ which is likely due to the same information, power expressed in watts, was used to  calculate both variables by the bicycle computer. This might  have lead to some form of target leakage in the sense that some information about the average power is already contained in the $$work\_load$$. We considered this and used the model with the highest prediction power in terms of the lowest OOS RMSE value to predict $$avg\_power$$ again without $$work\_load$$ in the strava dataset.
