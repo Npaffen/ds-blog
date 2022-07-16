@@ -73,8 +73,8 @@ $$
  \end{equation}
 $$
 
-![orrelation graph of all variables]https://github.com/Npaffen/ds-blog/blob/main/docs/assets/heat_map.png){:style="float: right;margin-right: 700px;margin-top: 7px;"}
-
+![Correlation graph of all variables](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/heat_map.png){:style="float: right;margin-right: 700px;margin-top: 7px;"}
+*Figure 2 : Heat map for all variables of the strava dataset.*
 Figure 2 shows the Pearson correlation coefficient in a heat map. Tiles which are more reddish implicate a high positive correlation, white tiles implicate that the two variables are uncorrelated while more bluish tiles mark a strong negative correlation. The variables we want to predict are $$avg\_power$$ and $$UCI\_points\_weekly$$. The variables with the highest correlation for the $$avg\_power$$ were $$work\_total (0.44)$$, $$avg\_calories (0.4)$$ and $$avg\_cadence (0.37)$$. For $$UCI\_points\_weekly$$ we observed a slightly negative correlation with $$type\_mixed$$ and a small positive correlation with $$type\_sprinter$$. Therefore we observed that those athletes who focus more on sprint races or tournaments with many sprint sections seemed to achieve higher UCI points, while athletes of type mixed tended to achieve worse results. The overall low correlation with other variables indicated that a prediction of $$UCI\_points\_weekly$$ with the strava dataset might not achieve good results.
 
 # Methods
@@ -104,6 +104,7 @@ Figure 3 gives an example of a random forest prediction. The latter prediction o
 ## Gradient Boosting
 
 Mason [(1999)](https://www.researchgate.net/publication/221618845_Boosting_Algorithms_as_Gradient_Descent) proposed an boosting algorithm based on gradient descent. Gradient Boosting Models generate multiple tree models and add them together to generate a single ensemble model.  The Gradient Boosting machine (GBM) learns with each iteration which splits improved the ensemble model trough a regularized learning objective. Consider some input data $$\{(x_i,y_i)\}^n_{i=1}$$ and a differential loss function $$L(y,F(x))$$. $$F(x)$$ is a model to predict $$\hat{y}$$. A loss function is an evaluation metric of a model $$F(x)$$ and our target variable $$y$$. As an example we will use
+
 $$
  \begin{equation}
  L(y,F(x)) = \dfrac{1}{2}(y - \hat{y})^2
