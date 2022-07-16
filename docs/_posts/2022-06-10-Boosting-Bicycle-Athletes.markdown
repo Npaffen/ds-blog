@@ -73,7 +73,6 @@ $$
  \end{equation}
 $$
 
-#
 
 ![Correlation graph of all variables](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/heat_map.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
 *Figure 2 : Heat map for all variables of the strava dataset.*
