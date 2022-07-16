@@ -4,7 +4,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
 <script>
       document.addEventListener("DOMContentLoaded  ", function() {
-          renderMathInElement(document.body, {
+          renderMathInElement(document.body,
   trust: (context) => ['\\htmlId', '\\href'].includes(context.command),
   macros: {
   "\\eqref": "\\href{###1}{(\\text{#1})}",
