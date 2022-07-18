@@ -121,6 +121,21 @@ $$
  Figure 4 shows a visualization of this process. We decided to not include the GBM method in the results section since XGBoost  and Lightgbm are direct successors of this technique and are likely to outperform the GBM method. We still included this method to give a good introduction into the following gradient-based tree-ensemble methods.
 
 ## XGBoost
+Let $T$ be the number of terminal nodes in a tree. Then $q$ can be defined as the decision rules which creates the structure of a tree with a root node in the beginning and some terminal nodes in the end. $w$ can be defined as the continuous score on the $i$-th terminal node. So the (final) prediction of $\hat{y}$ will be calculated by the sum of the corresponding terminal nodes which are given by $w$. \cite{Chen2016} expand the loss function of GBM by some regulization paramter $\Omega$ to create a regularized task.
+
+$$
+\begin{equation}
+\begin{array}{l}
+\mathcal{L}(\phi)=\sum_{i} l\left(\hat{y}_{i}, y_{i}\right)+\sum_{k} \Omega\left(f_{k}\right) \\
+\text { where } \Omega(f)=\gamma T+\frac{1}{2} \lambda\|w\|^{2}
+\end{array}
+\label{eq:reglu_obj}\tag{eq:reglu_obj}
+\end{equation}
+$$
+
+In equation $$\ref{eq:reglu_obj}$$ the differentiable loss function is defined by $$l\left(\hat{y}_{i}, y_{i}\right)$$ and calculates the difference of the predicted $$\hat{y}$$ and the actual value of $$y$$. $$\Omega$$ controls the complexity of the model by adding a penalty parameter $$\gamma$$ to  alter the number of terminal nodes of a tree and $$\frac{1}{2} \lambda\|w\|^{2}$$ is used to level the weights as a protection against overfitting.
+
+To optimize $$\ref{eq:reglu_obj}$$ we need to train the model in an additive sense. This means, that in each instance $$i$$  of the iteration $$t$$ we predict $$\hat{y}_i^{(t)}$$ and will add $$f_t$$ to minimize the objective.
  ![XGBoost](https://github.com/Npaffen/ds-blog/blob/main/docs/assets/XGBoost-1.png?raw=true){:style="float: center;margin-right: 700px;margin-top: 7px;"}
  *Figure 5: The diagram shows exemplary how XGBoost initiates the algorithm, builds trees, calculates the weights and updates the model.*
 
