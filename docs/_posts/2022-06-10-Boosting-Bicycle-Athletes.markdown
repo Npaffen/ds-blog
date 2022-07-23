@@ -25,7 +25,7 @@ mixed   &  \mbox{else}
 \end{cases}
 \end{gather}
 \label{eq:type_rule}
-\tag{eq:type_rule}
+\tag{(1)}
 $$
 
 The following table gives an overview of all variables of the strava dataset. Those variables that have a $$^*$$ were used in the regression models, as explained in later in detail.
@@ -44,7 +44,7 @@ avg\_power\_comb_j =
 avg\_power\_weig_j & \mbox{if} \quad estAvgPower_j < 100 \\  & \mbox{and} \quad  avg\_power_j  < 100 \\ &  \mbox{and}\quad avg\_power_j \geq 100 \\
 avg\_power_j  &  \mbox{else}
 \end{cases}
-\label{eq:avg_power_comb}\tag{eq:avg_power_comb}
+\label{eq:avg_power_comb}\tag{(2)}
 \end{equation*}
 
 
@@ -64,7 +64,7 @@ $$
  \begin{aligned}
  avg\_calories = {mov\_time\_sec} + {distance} + {work\_total} \\  + {elevation} + {max\_speed} + \epsilon
  \end{aligned}
- \label{eq:irmi_reg_1} \tag{eq:irmi_reg_1}
+ \label{eq:irmi_reg_1} \tag{(3)}
  \end{equation}
  $$
 
@@ -73,7 +73,7 @@ $$
  \begin{aligned}
   avg\_temperature = {max\_speed}+{elevation}+{distance}  \\ + {distance}+{max\_heartRate} + \epsilon
  \end{aligned}
- \label{eq:irmi_reg_2} \tag{eq:irmi_reg_2}
+ \label{eq:irmi_reg_2} \tag{(4)}
  \end{equation}
 $$
 
@@ -115,7 +115,7 @@ $$
  \begin{equation}
  L(y,F(x)) = \dfrac{1}{2}(y - \hat{y})^2
  \end{equation}
- \label{eq:reg_loss} \tag{eq:reg_loss}
+ \label{eq:reg_loss} \tag{(5)}
  $$
  as our loss function. Where the $$F(x)$$ is a model to predict $$\hat{y}$$.
 
@@ -133,9 +133,10 @@ $$
 \mathcal{L}(\phi)=\sum_{i} l\left(\hat{y}_{i}, y_{i}\right)+\sum_{k} \Omega\left(f_{k}\right) \\
 \text { where } \Omega(f)=\gamma T+\frac{1}{2} \lambda\|w\|^{2}
 \end{array}
-\label{eq:reglu_obj}\tag{eq:reglu_obj}
+\label{eq:reglu_obj}\tag{(6)}
 \end{equation}
 $$
+
 
 In equation $$\ref{eq:reglu_obj}$$ the differentiable loss function is defined by $$l\left(\hat{y}_{i}, y_{i}\right)$$ and calculates the difference of the predicted $$\hat{y}$$ and the actual value of $$y$$. $$\Omega$$ controls the complexity of the model by adding a penalty parameter $$\gamma$$ to  alter the number of terminal nodes of a tree and $$\frac{1}{2} \lambda\|w\|^{2}$$ is used to level the weights as a protection against overfitting.
 
@@ -151,10 +152,10 @@ Again we consider the variable $$avg\_power\_comb$$ as our target variable. So w
 Ke et al. [(2017)](. https://doi.org/10.5555/3294996.3295074) proposed a gradient boosting algorithm called LightGBM (LGBM), which supports a way to differ between instances with small and large absolute gradient statistics. They called this method $$\textit{Gradient-based One-Side Sampling}$$ (GOSS) and argued that those instances with a small gradient also show a low training error and should therefore receive less attention. GOSS sorts the instances with respect to their absolute value of their gradients in descending order and chooses the top   $$l \times 100\%$$ instances. From the other $$1-t$$ share of instances, GOSS randomly samples $$s \times 100\%$$ instances. The latter samples are multiplied with a small weight $$\dfrac{1-l}{s}$$ when the loss function is evaluated.
 
 The following explains the splitting decision for trees in LGBM. $$\tilde{v}_{j}(p)$$ is the estimated variance gain when we split a feature $$k$$ at point $$p$$. As explained before, LGBM differs between instances with large and small absolute gradient statistics. So that $$C_l = \left\{x_{i} \in C: x_{i k} \leq p\right\}$$, $$C_{r}=\left\{x_{i} \in C:x_{ik}>p\right\}$$. The feature values smaller than or equal to the threshold $$p$$ of those instances with large absolute gradient statistics would be split to the left child node and those exceeding the threshold $$p$$ would be split to the right child node. The same definition holds for $$D_l$$ and $$D_r$$, with the difference that $$D$$ represents randomly sampled instances from those with already low absolute gradient statistics. Formally, LGBM estimates $$\tilde{v}_k(p_k^*)$$, because we train with a dataset of instances that is smaller than the dataset of all possible instances, such that
-$$\tag{eq:lgbm_split}
+$$
 \begin{equation}
 \tilde{v}_{j}(p)=\frac{1}{n}\left(\frac{\left(\sum_{x_{i} \in C_{l}} g_{i}+\dfrac{1-l}{s} \sum_{x_{i} \in D_{l}} g_{i}\right)^{2}}{n_{l}^{k}(d)}+\frac{\left(\sum_{x_{i} \in C_{r}} g_{i}+\dfrac{1-l}{s} \sum_{x_{i} \in D_{r}} g_{i}\right)^{2}}{n_{r}^{k}(pd)}\right).
-\label{eq:lgbm_split}
+\label{eq:lgbm_split} \tag{(7)}
 \end{equation}
 $$
 
@@ -207,16 +208,16 @@ The aim of HPO is to find a set of hyperparameter values for a (machine learning
 $$
 \begin{equation}
 x^* = \underset{x \in \mathcal{X}}{\arg \min }f(x)
-\label{eq:HPO}\tag{eq:HPO}
+\label{eq:HPO}\tag{(8)}
 \end{equation}
 $$
 
-Other HPO methods such as manual search, grid search or random search suffer from the problem that they cannot evaluate the chosen set of hyperparameter values after each iteration. This problem is solved by Bayesian HPO which uses an acquisition function as a prior for the hyperparameter set to evaluate next. Consider an objective function such as equation \eqref{eq:reglu_obj} from XGBoost and a dataset with $$n$$ observations and $$d$$ features, which are the hyperparameters of our objective function, so that $$x_i = (x_{i1},\ldots,x_{id})^T$$ and $$y_i = y_i(x)$$ Either one initialize the optimization process with $$t$$ hyperparameter sets with $$t\in n$$ or the algorithm randomly samples $$t$$ of such sets w.r.t. the range of each hyperparameter.  $$D_0 = {x_1,\ldots,x_n}$$ stores the hyperparameter sets for $$n$$  trials in a $$n \times d$$ matrix $$X$$. Normalization of $$x_i$$ achieves $$x_i \in [0, 1]^d$$. Afterwards, each set $$i$$ is used with the objective function to obtain a performance metric as the $$i$$-th observation of the dependent variable $$y_i$$. Those outputs are stored in the $$n \times 1$$ vector $$Y = y(X) = (y_1,\ldots,y_n)^T$$. Instead of continuing to evaluate the objective function for further hyperparameter sets, Bayesian HPO uses a surrogate model to estimate the function to be optimized. The model used in this implementation is the Gaussian Process (GP) model:
+Other HPO methods such as manual search, grid search or random search suffer from the problem that they cannot evaluate the chosen set of hyperparameter values after each iteration. This problem is solved by Bayesian HPO which uses an acquisition function as a prior for the hyperparameter set to evaluate next. Consider an objective function such as equation $$\eqref{eq:reglu_obj} from XGBoost and a dataset with $$n$$ observations and $$d$$ features, which are the hyperparameters of our objective function, so that $$x_i = (x_{i1},\ldots,x_{id})^T$$ and $$y_i = y_i(x)$$ Either one initialize the optimization process with $$t$$ hyperparameter sets with $$t\in n$$ or the algorithm randomly samples $$t$$ of such sets w.r.t. the range of each hyperparameter.  $$D_0 = {x_1,\ldots,x_n}$$ stores the hyperparameter sets for $$n$$  trials in a $$n \times d$$ matrix $$X$$. Normalization of $$x_i$$ achieves $$x_i \in [0, 1]^d$$. Afterwards, each set $$i$$ is used with the objective function to obtain a performance metric as the $$i$$-th observation of the dependent variable $$y_i$$. Those outputs are stored in the $$n \times 1$$ vector $$Y = y(X) = (y_1,\ldots,y_n)^T$$. Instead of continuing to evaluate the objective function for further hyperparameter sets, Bayesian HPO uses a surrogate model to estimate the function to be optimized. The model used in this implementation is the Gaussian Process (GP) model:
 
 $$
 \begin{equation}
 y\left(x_{i}\right)=\mu+z\left(x_{i}\right) ; \quad i=1, \ldots, n
-\label{eq:GP_model}\tag{eq:GP_model}
+\label{eq:GP_model}\tag{(9)}
 \end{equation}
 $$
 where $$\mu$$ is the overall mean and $$z(x_i)$$ defines the GP with $$E[z(x_i)] = 0$$, $$Var[z(x_i)]=\sigma^2$$ and $$Cov(z(x_i),z(x_j))= \sigma^1R_{i,j}$$. Let $$y(X) \sim N_{n}\left(\mathbf{1}_{\mathbf{n}} \mu, \Sigma\right)$$, where $$N_{n}\left(\mathbf{1}_{\mathbf{n}} \mu, \Sigma\right)$$ is a multivariate normal distribution with $$\Sigma=\sigma^{2} R$$ defined through a correlation matrix $$R$$ with elements $$R_{ij}$$ and $$\mathbf{1}_{\mathbf{n}}$$, a vector of length $$n$$ with all ones s $$n\times 1$$.
@@ -229,7 +230,7 @@ Figure 7 shows an exemplary GP which was generated by predicting 100 possible ca
 $$
 \begin{equation}
 y = \dfrac{a + (\sum_{i=1}^k b_i)^2 - 0.69 \times a ^3 + log(x) }{2 \times a + log(x)}
-\label{eq:gp_y}\tag{eq:gp_y}
+\label{eq:gp_y}\tag{(10)}
 \end{equation}
 $$
 with $$a = \mathcal{U}(1, 10)$$ being a random variable drawn from the uniform distribution between 1 and 10  and $$b = \mathcal{N}(0,0.5^2)$$ beeing a random variable drawn from the normal distribution with mean $$0$$ and variance of $$0.5^2$$. We observe that the confidence bound increases in size, the greater the distance between two candidates who have already been evaluated. Considering that our goal would be the hyperparameter value that minimizes the evaluation function value the GP would continue sampling values around $$x = 4$$ and probably between $$x=9$$ and $$x = 10$$ since we would expect here the largest reduction in terms of the evaluation function given the estimated confidence bound.
@@ -245,7 +246,7 @@ $$
 \begin{equation}
 g\left(z^{\prime}\right)=\phi_{0}+\sum_{j=1}^{M} \phi_{j} z_{j}^{\prime} \\
 \end{equation}
-\label{eq:shap_val}\tag{eq:shap_val}
+\label{eq:shap_val}\tag{(11)}
 $$
 
 where $$z^{\prime} \in \{0,1\}^M$$ is the coalition vector, $$M$$ defines the maximum coalition size and $$\phi_j \in \mathbb{R}$$ are the Shapley values.
