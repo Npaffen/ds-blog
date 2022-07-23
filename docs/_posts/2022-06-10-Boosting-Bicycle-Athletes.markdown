@@ -126,7 +126,7 @@ $$
 
 ## XGBoost
 Let $$T$$ be the number of terminal nodes in a tree. Then $$q$$ can be defined as the decision rules which creates the structure of a tree with a root node in the beginning and some terminal nodes in the end. $w$ can be defined as the continuous score on the $i$-th terminal node. So the (final) prediction of $$\hat{y}$$ will be calculated by the sum of the corresponding terminal nodes which are given by $$w$$. \cite{Chen2016} expand the loss function of GBM by some regulization paramter $$\Omega$$ to create a regularized task.
-\tag{eq:reglu_obj}
+
 $$
 \begin{equation}
 \begin{array}{l}
