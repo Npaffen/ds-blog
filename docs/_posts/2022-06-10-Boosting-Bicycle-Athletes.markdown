@@ -125,7 +125,7 @@ $$
  Figure 4 shows a visualization of this process. We decided to not include the GBM method in the results section since XGBoost  and Lightgbm are direct successors of this technique and are likely to outperform the GBM method. We still included this method to give a good introduction into the following gradient-based tree-ensemble methods.
 
 ## XGBoost
-Let $T$ be the number of terminal nodes in a tree. Then $q$ can be defined as the decision rules which creates the structure of a tree with a root node in the beginning and some terminal nodes in the end. $w$ can be defined as the continuous score on the $i$-th terminal node. So the (final) prediction of $\hat{y}$ will be calculated by the sum of the corresponding terminal nodes which are given by $w$. \cite{Chen2016} expand the loss function of GBM by some regulization paramter $\Omega$ to create a regularized task.
+Let $$T$$ be the number of terminal nodes in a tree. Then $$q$$ can be defined as the decision rules which creates the structure of a tree with a root node in the beginning and some terminal nodes in the end. $w$ can be defined as the continuous score on the $i$-th terminal node. So the (final) prediction of $$\hat{y}$$ will be calculated by the sum of the corresponding terminal nodes which are given by $$w$$. \cite{Chen2016} expand the loss function of GBM by some regulization paramter $$\Omega$$ to create a regularized task.
 \tag{eq:reglu_obj}
 $$
 \begin{equation}
@@ -133,7 +133,7 @@ $$
 \mathcal{L}(\phi)=\sum_{i} l\left(\hat{y}_{i}, y_{i}\right)+\sum_{k} \Omega\left(f_{k}\right) \\
 \text { where } \Omega(f)=\gamma T+\frac{1}{2} \lambda\|w\|^{2}
 \end{array}
-\label{eq:reglu_obj}
+\label{eq:reglu_obj}\tag{eq:reglu_obj}
 \end{equation}
 $$
 
