@@ -42,7 +42,7 @@ avg\_power\_comb_j =
 \begin{cases}
  estAvgPower_j & \mbox{if} \quad  avg\_power_j \ < 100\\  & \mbox{and} \quad avg\_power\_weig_j < 100 \\ & \mbox{and}\quad estAvgPower_j \geq 100  \\
 avg\_power\_weig_j & \mbox{if} \quad estAvgPower_j < 100 \\  & \mbox{and} \quad  avg\_power_j  < 100 \\ &  \mbox{and}\quad avg\_power_j \geq 100 \\
-avg\_power_j  &  \mbox{else1x}
+avg\_power_j  &  \mbox{else}
 \end{cases}
 \label{eq:avg_power_comb}\tag{eq:avg_power_comb}
 \end{equation*}
