@@ -36,13 +36,13 @@ The following table gives an overview of all variables of the strava dataset. Th
 The measurement $$avg\_power$$ is the actual measurement of the average power provided by the bicycle computer and will be used as one variable to predict the average power of the strava Dataset.  $$avg\_power\_weig$$ is the adjusted avg. power of the ride where an algorithm from strava.com corrects possible outliers in the data due to environmental impacts such as terrain, grade, wind and other factors. The variable $$estAvgPower$$ is a guess of the average power measurement from strava.com if there is no power data supplied by the bicycle computer.  Karetnikov [(2019)](https://research.tue.nl/en/studentTheses/application-of-data-driven-analytics-on-sport-data-from-a-profess) argued that a mean power threshold below 100 is unreasonable and should be skipped.  Therefore we excluded every observation where $$avg\_power$$ or $$average\_power\_combined$$ were lower than 100 watt due to possible negative influence on the prediction models. To maintain as many observations as possible of the strava dataset, we decided to choose those where none of the three average power  measurements showed a value below 100 watt. So that $$avg\_power\_comb$$ was manufactured in the following sense :
 
 $$
-\flushlefts
+\flushleft
 \begin{equation}
 avg\_power\_comb_j =
 \begin{cases}
  estAvgPower_j & \mbox{if} \quad  avg\_power_j \ < 100\\  & \mbox{and} \quad avg\_power\_weig_j < 100 \\ & \mbox{and}\quad estAvgPower_j \geq 100  \\
 avg\_power\_weig_j & \mbox{if} \quad estAvgPower_j < 100 \\  & \mbox{and} \quad  avg\_power_j  < 100 \\ &  \mbox{and}\quad avg\_power_j \geq 100 \\
-avg\_power_j  &  \mbox{else}
+avg\_power_j  &  \mbox{else1}
 \end{cases}
 \label{eq:avg_power_comb}\tag{eq:avg_power_comb}
 \end{equation}
