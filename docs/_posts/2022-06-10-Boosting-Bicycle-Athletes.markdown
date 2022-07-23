@@ -23,8 +23,9 @@ sprinter & \mbox{if} \quad  \sum_{i_{d}}^{i_{D}}sprinter\_points_{i_d, k} >  \bi
  & \mbox{and} \quad  \biggl\{\sum_{i_{d}}^{i_{D}}sprinter\_points_{i_d, k} -  \sum_{i_{d}}^{i_{D}}climber\_points_{i_d, k} \biggr\} \geq 30 \\
 mixed   &  \mbox{else}
 \end{cases}
-\label{eq:type_rule}\tag{eq:type_rule}
 \end{gather}
+\label{eq:type_rule}
+\tag{eq:type_rule}
 $$
 
 The following table gives an overview of all variables of the strava dataset. Those variables that have a $$^*$$ were used in the regression models, as explained in later in detail.
@@ -42,9 +43,9 @@ avg\_power\_comb_j =
 avg\_power\_weig_j & \mbox{if} \quad estAvgPower_j < 100 \\  & \mbox{and} \quad  avg\_power_j  < 100 \\ &  \mbox{and}\quad avg\_power_j \geq 100 \\
 avg\_power_j  &  \mbox{else}
 \end{cases}
-\label{eq:avg_power_comb} \\
-\tag{eq:avg_power_comb}
+\label{eq:avg_power_comb}
 \end{equation}
+\tag{eq:avg_power_comb}
 $$
 
 $$avg\_power\_comb$$ will be used as a second prediction variable for the average power measurement in a separated model from the $$avg\_power$$ variable. Models that contain the $$avg\_power\_comb$$ variable consist of more observations compared to those that contain the original measurement $$avg\_power$$.
@@ -111,8 +112,8 @@ Mason [(1999)](https://www.researchgate.net/publication/221618845_Boosting_Algor
 $$
  \begin{equation}
  L(y,F(x)) = \dfrac{1}{2}(y - \hat{y})^2
- \label{eq:reg_loss} \tag{eq:reg_loss}
  \end{equation}
+ \label{eq:reg_loss} \tag{eq:reg_loss}
  $$
  as our loss function. Where the $$F(x)$$ is a model to predict $$\hat{y}$$.
 
@@ -123,14 +124,14 @@ $$
 
 ## XGBoost
 Let $T$ be the number of terminal nodes in a tree. Then $q$ can be defined as the decision rules which creates the structure of a tree with a root node in the beginning and some terminal nodes in the end. $w$ can be defined as the continuous score on the $i$-th terminal node. So the (final) prediction of $\hat{y}$ will be calculated by the sum of the corresponding terminal nodes which are given by $w$. \cite{Chen2016} expand the loss function of GBM by some regulization paramter $\Omega$ to create a regularized task.
-
+\tag{eq:reglu_obj}
 $$
 \begin{equation}
 \begin{array}{l}
 \mathcal{L}(\phi)=\sum_{i} l\left(\hat{y}_{i}, y_{i}\right)+\sum_{k} \Omega\left(f_{k}\right) \\
 \text { where } \Omega(f)=\gamma T+\frac{1}{2} \lambda\|w\|^{2}
 \end{array}
-\label{eq:reglu_obj}\tag{eq:reglu_obj}
+\label{eq:reglu_obj}
 \end{equation}
 $$
 
@@ -148,10 +149,10 @@ Again we consider the variable $$avg\_power\_comb$$ as our target variable. So w
 Ke et al. [(2017)](. https://doi.org/10.5555/3294996.3295074) proposed a gradient boosting algorithm called LightGBM (LGBM), which supports a way to differ between instances with small and large absolute gradient statistics. They called this method $$\textit{Gradient-based One-Side Sampling}$$ (GOSS) and argued that those instances with a small gradient also show a low training error and should therefore receive less attention. GOSS sorts the instances with respect to their absolute value of their gradients in descending order and chooses the top   $$l \times 100\%$$ instances. From the other $$1-t$$ share of instances, GOSS randomly samples $$s \times 100\%$$ instances. The latter samples are multiplied with a small weight $$\dfrac{1-l}{s}$$ when the loss function is evaluated.
 
 The following explains the splitting decision for trees in LGBM. $$\tilde{v}_{j}(p)$$ is the estimated variance gain when we split a feature $$k$$ at point $$p$$. As explained before, LGBM differs between instances with large and small absolute gradient statistics. So that $$C_l = \left\{x_{i} \in C: x_{i k} \leq p\right\}$$, $$C_{r}=\left\{x_{i} \in C:x_{ik}>p\right\}$$. The feature values smaller than or equal to the threshold $$p$$ of those instances with large absolute gradient statistics would be split to the left child node and those exceeding the threshold $$p$$ would be split to the right child node. The same definition holds for $$D_l$$ and $$D_r$$, with the difference that $$D$$ represents randomly sampled instances from those with already low absolute gradient statistics. Formally, LGBM estimates $$\tilde{v}_k(p_k^*)$$, because we train with a dataset of instances that is smaller than the dataset of all possible instances, such that
-$$
+$$\tag{eq:lgbm_split}
 \begin{equation}
 \tilde{v}_{j}(p)=\frac{1}{n}\left(\frac{\left(\sum_{x_{i} \in C_{l}} g_{i}+\dfrac{1-l}{s} \sum_{x_{i} \in D_{l}} g_{i}\right)^{2}}{n_{l}^{k}(d)}+\frac{\left(\sum_{x_{i} \in C_{r}} g_{i}+\dfrac{1-l}{s} \sum_{x_{i} \in D_{r}} g_{i}\right)^{2}}{n_{r}^{k}(pd)}\right).
-\label{eq:lgbm_split}\tag{eq:lgbm_split}
+\label{eq:lgbm_split}
 \end{equation}
 $$
 
@@ -241,8 +242,8 @@ A quite recent approach to interpret ensemble models was suggested by Lundberg a
 $$
 \begin{equation}
 g\left(z^{\prime}\right)=\phi_{0}+\sum_{j=1}^{M} \phi_{j} z_{j}^{\prime} \\
-\label{eq:shap_val}\tag{eq:shap_val}
 \end{equation}
+\label{eq:shap_val}\tag{eq:shap_val}
 $$
 
 where $$z^{\prime} \in \{0,1\}^M$$ is the coalition vector, $$M$$ defines the maximum coalition size and $$\phi_j \in \mathbb{R}$$ are the Shapley values.
