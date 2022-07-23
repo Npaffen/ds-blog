@@ -2,6 +2,7 @@
 layout: post
 title:  "Boosting the bicycle athlete"
 math: true
+author_profile: false
 date:   2022-06-12 13:53:16 +0200
 tags: strava.com crawler datamining scraping gradient-boosting-models gradient-descent SHAPE-value decision-tree random-forest catboost xgboost lightgbm
 ---
@@ -25,7 +26,7 @@ mixed   &  \mbox{else}
 \end{cases}
 \end{equation}
 \label{eq:type_rule}
-\tag{(1)}
+\tag{1}
 $$
 
 The following table gives an overview of all variables of the strava dataset. Those variables that have a $$^*$$ were used in the regression models, as explained in later in detail.
@@ -44,7 +45,7 @@ avg\_power\_comb_j =
 avg\_power\_weig_j & \mbox{if} \quad estAvgPower_j < 100 \\  & \mbox{and} \quad  avg\_power_j  < 100 \\ &  \mbox{and}\quad avg\_power_j \geq 100 \\
 avg\_power_j  &  \mbox{else}
 \end{cases}
-\label{eq:avg_power_comb}\tag{(2)}
+\label{eq:avg_power_comb}\tag{2}
 \end{equation*}
 
 
@@ -64,7 +65,7 @@ $$
  \begin{aligned}
  avg\_calories = {mov\_time\_sec} + {distance} + {work\_total} \\  + {elevation} + {max\_speed} + \epsilon
  \end{aligned}
- \label{eq:irmi_reg_1} \tag{(3)}
+ \label{eq:irmi_reg_1} \tag{3}
  \end{equation}
  $$
 
@@ -73,7 +74,7 @@ $$
  \begin{aligned}
   avg\_temperature = {max\_speed}+{elevation}+{distance}  \\ + {distance}+{max\_heartRate} + \epsilon
  \end{aligned}
- \label{eq:irmi_reg_2} \tag{(4)}
+ \label{eq:irmi_reg_2} \tag{4}
  \end{equation}
 $$
 
@@ -115,7 +116,7 @@ $$
  \begin{equation}
  L(y,F(x)) = \dfrac{1}{2}(y - \hat{y})^2
  \end{equation}
- \label{eq:reg_loss} \tag{(5)}
+ \label{eq:reg_loss} \tag{5}
  $$
  as our loss function. Where the $$F(x)$$ is a model to predict $$\hat{y}$$.
 
@@ -125,7 +126,7 @@ $$
  Figure 4 shows a visualization of this process. We decided to not include the GBM method in the results section since XGBoost  and Lightgbm are direct successors of this technique and are likely to outperform the GBM method. We still included this method to give a good introduction into the following gradient-based tree-ensemble methods.
 
 ## XGBoost
-Let $$T$$ be the number of terminal nodes in a tree. Then $$q$$ can be defined as the decision rules which creates the structure of a tree with a root node in the beginning and some terminal nodes in the end. $w$ can be defined as the continuous score on the $i$-th terminal node. So the (final) prediction of $$\hat{y}$$ will be calculated by the sum of the corresponding terminal nodes which are given by $$w$$. \cite{Chen2016} expand the loss function of GBM by some regulization paramter $$\Omega$$ to create a regularized task.
+Let $$T$$ be the number of terminal nodes in a tree. Then $$q$$ can be defined as the decision rules which creates the structure of a tree with a root node in the beginning and some terminal nodes in the end. $w$ can be defined as the continuous score on the $i$-th terminal node. So the (final) prediction of $$\hat{y}$$ will be calculated by the sum of the corresponding terminal nodes which are given by $$w$$. Chen[(2016)](https://dl.acm.org/doi/10.1145/2939672.2939785) expand the loss function of GBM by some regulization paramter $$\Omega$$ to create a regularized task.
 
 $$
 \begin{equation}
@@ -133,7 +134,7 @@ $$
 \mathcal{L}(\phi)=\sum_{i} l\left(\hat{y}_{i}, y_{i}\right)+\sum_{k} \Omega\left(f_{k}\right) \\
 \text { where } \Omega(f)=\gamma T+\frac{1}{2} \lambda\|w\|^{2}
 \end{array}
-\label{eq:reglu_obj}\tag{(6)}
+\label{eq:reglu_obj}\tag{6}
 \end{equation}
 $$
 
@@ -155,7 +156,7 @@ The following explains the splitting decision for trees in LGBM. $$\tilde{v}_{j}
 $$
 \begin{equation}
 \tilde{v}_{j}(p)=\frac{1}{n}\left(\frac{\left(\sum_{x_{i} \in C_{l}} g_{i}+\dfrac{1-l}{s} \sum_{x_{i} \in D_{l}} g_{i}\right)^{2}}{n_{l}^{k}(d)}+\frac{\left(\sum_{x_{i} \in C_{r}} g_{i}+\dfrac{1-l}{s} \sum_{x_{i} \in D_{r}} g_{i}\right)^{2}}{n_{r}^{k}(pd)}\right).
-\label{eq:lgbm_split} \tag{(7)}
+\label{eq:lgbm_split} \tag{7}
 \end{equation}
 $$
 
@@ -208,7 +209,7 @@ The aim of HPO is to find a set of hyperparameter values for a (machine learning
 $$
 \begin{equation}
 x^* = \underset{x \in \mathcal{X}}{\arg \min }f(x)
-\label{eq:HPO}\tag{(8)}
+\label{eq:HPO}\tag{8}
 \end{equation}
 $$
 
@@ -217,7 +218,7 @@ Other HPO methods such as manual search, grid search or random search suffer fro
 $$
 \begin{equation}
 y\left(x_{i}\right)=\mu+z\left(x_{i}\right) ; \quad i=1, \ldots, n
-\label{eq:GP_model}\tag{(9)}
+\label{eq:GP_model}\tag{9}
 \end{equation}
 $$
 where $$\mu$$ is the overall mean and $$z(x_i)$$ defines the GP with $$E[z(x_i)] = 0$$, $$Var[z(x_i)]=\sigma^2$$ and $$Cov(z(x_i),z(x_j))= \sigma^1R_{i,j}$$. Let $$y(X) \sim N_{n}\left(\mathbf{1}_{\mathbf{n}} \mu, \Sigma\right)$$, where $$N_{n}\left(\mathbf{1}_{\mathbf{n}} \mu, \Sigma\right)$$ is a multivariate normal distribution with $$\Sigma=\sigma^{2} R$$ defined through a correlation matrix $$R$$ with elements $$R_{ij}$$ and $$\mathbf{1}_{\mathbf{n}}$$, a vector of length $$n$$ with all ones s $$n\times 1$$.
@@ -230,7 +231,7 @@ Figure 7 shows an exemplary GP which was generated by predicting 100 possible ca
 $$
 \begin{equation}
 y = \dfrac{a + (\sum_{i=1}^k b_i)^2 - 0.69 \times a ^3 + log(x) }{2 \times a + log(x)}
-\label{eq:gp_y}\tag{(10)}
+\label{eq:gp_y}\tag{10}
 \end{equation}
 $$
 with $$a = \mathcal{U}(1, 10)$$ being a random variable drawn from the uniform distribution between 1 and 10  and $$b = \mathcal{N}(0,0.5^2)$$ beeing a random variable drawn from the normal distribution with mean $$0$$ and variance of $$0.5^2$$. We observe that the confidence bound increases in size, the greater the distance between two candidates who have already been evaluated. Considering that our goal would be the hyperparameter value that minimizes the evaluation function value the GP would continue sampling values around $$x = 4$$ and probably between $$x=9$$ and $$x = 10$$ since we would expect here the largest reduction in terms of the evaluation function given the estimated confidence bound.
@@ -246,7 +247,7 @@ $$
 \begin{equation}
 g\left(z^{\prime}\right)=\phi_{0}+\sum_{j=1}^{M} \phi_{j} z_{j}^{\prime} \\
 \end{equation}
-\label{eq:shap_val}\tag{(11)}
+\label{eq:shap_val}\tag{11}
 $$
 
 where $$z^{\prime} \in \{0,1\}^M$$ is the coalition vector, $$M$$ defines the maximum coalition size and $$\phi_j \in \mathbb{R}$$ are the Shapley values.
