@@ -43,10 +43,9 @@ avg\_power\_comb_j =
 avg\_power\_weig_j & \mbox{if} \quad estAvgPower_j < 100 \\  & \mbox{and} \quad  avg\_power_j  < 100 \\ &  \mbox{and}\quad avg\_power_j \geq 100 \\
 avg\_power_j  &  \mbox{else}
 \end{cases}
-}
 \end{equation}
-\label{eq:avg_power_comb
-\tag{eq:avg_power_comb}
+\label{eq:avg_power_comb}\tag{eq:avg_power_comb}
+
 $$
 
 $$avg\_power\_comb$$ will be used as a second prediction variable for the average power measurement in a separated model from the $$avg\_power$$ variable. Models that contain the $$avg\_power\_comb$$ variable consist of more observations compared to those that contain the original measurement $$avg\_power$$.
