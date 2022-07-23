@@ -42,7 +42,8 @@ avg\_power\_comb_j =
 avg\_power\_weig_j & \mbox{if} \quad estAvgPower_j < 100 \\  & \mbox{and} \quad  avg\_power_j  < 100 \\ &  \mbox{and}\quad avg\_power_j \geq 100 \\
 avg\_power_j  &  \mbox{else}
 \end{cases}
-\label{eq:avg_power_comb}\tag{eq:avg_power_comb}
+\label{eq:avg_power_comb} \\
+\tag{eq:avg_power_comb}
 \end{equation}
 $$
 
@@ -187,18 +188,17 @@ $$
 To optimize the tree ensemble models we can optimize their hyperparameters. This subsection will introduce the Bayesian HPO method and will discuss which hyperparameters are possible and useful for each tree ensemble technique.
 Tree ensemble algorithm such as the gradient boosting tree implementations of XGBoost, Lightbm and Catboost have several hyperparameter which handle:
 
-$$
-\begin{itemize}
-\item \textbf{learning rate} - the contribution of each (tree) model, often a factor betwen 0 and 1
-\item \textbf{mtry}  - defines how many variables will be used for each (tree) model
-\item \textbf{sample size} - defines the number or share of observations of the training dataset to be used in each (tree) model
-\item \textbf{tree depth} - the maximum amount of levels each tree can generate
-\item \textbf{trees} - the number of trees to build
-\item \textbf{minimal node size} - a minimum number of observations in a node needed to accept a new split at a decision node of a tree
-\item \textbf {loss reduction} - minimum loss reduction needed to accept a split at a decision node of a tree
-\item \textbf{iteration stop} - the number of trees without improvement before stopping the algorithm
-\end{itemize}
-$$
+
+|learning rate|  the contribution of each (tree) model, often a factor betwen 0 and 1|
+|mtry|   defines how many variables will be used for each (tree) model|
+|sample size|  defines the number or share of observations of the training dataset to be used in each (tree) model|
+|tree depth|  the maximum amount of levels each tree can generate|
+|trees|  the number of trees to build|
+|minimal node size|  a minimum number of observations in a node needed to accept a new split at a decision node of a tree|
+|loss reduction|  minimum loss reduction needed to accept a split at a decision node of a tree|
+|iteration stop|  the number of trees without improvement before stopping the algorithm|
+
+
 
 The aim of HPO is to find a set of hyperparameter values for a (machine learning) method which minimizes the chosen loss function to evaluate the quality of the model on the validation dataset. Let the chosen loss function be some function $$f(x)$$ and $$x^*$$ the set of optimal hyperparameter values, then HPO can be stated as :
 $$
